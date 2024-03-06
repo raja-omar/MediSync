@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Sidebar from './components/Sidebar';
-import MainSection from './components/MainSection';
-import './App.css';
+import Sidebar from '../components/Sidebar';
+import MainSection from '../components/MainSection';
+import '../styles/App.css';
 
 function App() {
   const [patientData, setPatientData] = useState(null);

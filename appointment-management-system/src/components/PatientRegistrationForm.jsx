@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import './PatientRegistrationFormStyles.css';
+import '../styles/PatientRegistrationFormStyles.css';
 
 const PatientRegistrationForm = ({ onClose, onSubmit }) => {
   const [formData, setFormData] = useState({
