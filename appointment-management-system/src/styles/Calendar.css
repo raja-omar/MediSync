@@ -58,15 +58,15 @@
   flex-direction: column;
   border-right: 1px solid #ccc;
   margin-top: 42.5px;
-  background-color: #f7f7f7; /* Light gray background */
+  background-color: #f7f7f7; 
 }
 
 .time-cell {
   height: 40px;
   padding: 5px;
   border-bottom: 1px solid #ccc;
-  display: flex; /* Align items horizontally */
-  align-items: center; /* Center content vertically */
+  display: flex; 
+  align-items: center; 
 }
 
 .time-label {
@@ -74,12 +74,65 @@
   color: #666;
 }
 
-/* Add alternate background color for better differentiation */
 .time-cell:nth-child(odd) {
-  background-color: #fff; /* White background for odd cells */
+  background-color: #fff; 
 }
 
 .cell {
   border-bottom: 1px solid #ccc;
-  height: 50px; /* Height of each cell */
+  height: 50px; 
+  position: relative;
+}
+
+.patient-card {
+  background-color: #65efa7;
+  border: 1px solid #ccc;
+  padding: 5px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.delete-patient-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.block-mode {
+  pointer-events: none; 
+}
+
+.lightred-bg {
+  background-color: lightcoral;
+}
+
+.drag-card {
+  margin-top: 10px;
+  display: inline-block;
+  padding: 10px;
+  border: 2px solid #007bff;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+  color: #212529;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.drag-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.drag-card:active {
+  transform: translateY(0);
+  box-shadow: none;
 }
