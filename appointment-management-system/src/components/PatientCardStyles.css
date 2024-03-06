@@ -1,0 +1,53 @@
+.patient-card {
+  background-color: #a5ecaf;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 300px;
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.patient-card h3 {
+  font-size: 22px;
+  margin-bottom: 5px;
+  margin-top: -2px;
+  color: #333333;
+  font-weight: bold;
+}
+
+.patient-card p {
+  margin-bottom: 1px;
+  color: #666666;
+  font-size: 16px;
+}
+
+.patient-card:hover {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+  cursor: pointer;
+}
+
+.patient-card:hover::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border: 2px solid #007bff;
+  border-radius: 12px;
+  pointer-events: none;
+}
+
+.patient-card::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  transition: border-color 0.3s ease;
+}

@@ -1,0 +1,112 @@
+.sidebar {
+  width: 250px; /* Width of the sidebar */
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: #1a1a1a;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+}
+
+.second-ctn {
+  flex: 1; /* Main section occupies remaining space */
+  padding-left: 20px; /* Add padding to separate sidebar from main section */
+}
+
+.dropdown {
+  margin-top: 20px;
+}
+
+.dropbtn {
+  background-color: #444;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.dropbtn:hover {
+  background-color: #555;
+}
+
+.dropdown-content {
+  display: none;
+  position: relative;
+  background-color: #333;
+  min-width: 200px;
+  z-index: 1;
+  border-radius: 0 0 5px 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-content.open {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10px;
+}
+
+.dropdown-item {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  padding: 8px 16px;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background-color: #555;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px;
+}
+
+.search-icon {
+  color: #ddd;
+}
+
+.search-input {
+  background-color: #444;
+  color: #fff;
+  border: none;
+  padding: 8px;
+  border-radius: 3px;
+  width: 155px;
+}
+
+.search-input::placeholder {
+  color: #ccc;
+}
+
+.register-patient {
+  background-color: #2ecc71;
+  border-radius: 3px;
+  color: white;
+  padding: 10px 10.5px;
+  width: auto;
+  text-align: left;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.register-patient:hover {
+  background-color: #27ae60;
+}
+
+.register-icon {
+  margin-left: 5px;
+}
