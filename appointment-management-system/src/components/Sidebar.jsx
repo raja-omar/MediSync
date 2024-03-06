@@ -39,7 +39,10 @@ const Sidebar = () => {
         <div
           className={`dropdown-content ${patientDropdownVisible ? 'open' : ''}`}
         >
-          <button className="dropdown-item" onClick={openDialog}>
+          <button
+            className="dropdown-item register-patient"
+            onClick={openDialog}
+          >
             Register new patient <FaUserPlus className="register-icon" />
           </button>
           <div className="search-container">
