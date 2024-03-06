@@ -7,7 +7,7 @@ const PatientCard = ({ firstName, lastName, age, healthCardNumber }) => {
         {firstName} {lastName}
       </h3>
       <p>Age: {age}</p>
-      <p>Health Card Number: {healthCardNumber}</p>
+      <p>Health ID: {healthCardNumber}</p>
     </div>
   );
 };

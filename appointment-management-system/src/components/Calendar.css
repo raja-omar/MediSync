@@ -1,0 +1,85 @@
+.calendar {
+  width: 100%;
+  margin: 10px;
+}
+
+.calendar-header {
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  margin-right: 10px;
+  border-radius: 5px;
+}
+
+.nav-button:last-child {
+  margin-right: 0;
+}
+
+.nav-button:hover {
+  background-color: #0056b3;
+}
+
+.calendar-body {
+  display: flex;
+}
+
+.calendar-day {
+  flex: 1;
+  border: 1px solid #ccc;
+}
+
+.day-date {
+  background-color: #f7f7f7;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.day-date h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.day-date p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.time-column {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #ccc;
+  margin-top: 42.5px;
+  background-color: #f7f7f7; /* Light gray background */
+}
+
+.time-cell {
+  height: 40px;
+  padding: 5px;
+  border-bottom: 1px solid #ccc;
+  display: flex; /* Align items horizontally */
+  align-items: center; /* Center content vertically */
+}
+
+.time-label {
+  font-size: 14px;
+  color: #666;
+}
+
+/* Add alternate background color for better differentiation */
+.time-cell:nth-child(odd) {
+  background-color: #fff; /* White background for odd cells */
+}
+
+.cell {
+  border-bottom: 1px solid #ccc;
+  height: 50px; /* Height of each cell */
+}

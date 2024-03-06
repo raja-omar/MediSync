@@ -1,20 +1,17 @@
-.first-ctn {
-  height: 80%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
 .sidebar {
-  width: 250px;
-  height: 100%;
-  position: fixed;
+  width: 250px; /* Width of the sidebar */
+  height: 100vh;
   top: 0;
   left: 0;
   background-color: #1a1a1a;
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   z-index: 1000;
+}
+
+.second-ctn {
+  flex: 1; /* Main section occupies remaining space */
+  padding-left: 20px; /* Add padding to separate sidebar from main section */
 }
 
 .dropdown {
@@ -30,7 +27,6 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  /* justify-content: space-between; */
   gap: 20px;
   width: 100%;
 }
@@ -104,7 +100,6 @@
   border: none;
   display: flex;
   align-items: center;
-  /* justify-content: space-between; */
   gap: 10px;
 }
 
