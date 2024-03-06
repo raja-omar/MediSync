@@ -46,10 +46,9 @@ const Sidebar = () => {
             Register new patient <FaUserPlus className="register-icon" />
           </button>
           <div className="search-container">
-            <FaSearch className="search-icon" />
             <input
               type="text"
-              placeholder="Search existing patient"
+              placeholder="Search existing patient  &#x1F50D; "
               className="search-input"
             />
           </div>

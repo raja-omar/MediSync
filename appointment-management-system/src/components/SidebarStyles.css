@@ -43,7 +43,11 @@
 }
 
 .dropdown-content.open {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10px;
+
 }
 
 .dropdown-item {
@@ -63,6 +67,7 @@
 .search-container {
   display: flex;
   align-items: center;
+  gap: 14px;
   padding: 10px;
 }
 
@@ -75,8 +80,9 @@
   color: #fff;
   border: none;
   padding: 8px;
-  margin-left: 5px;
   border-radius: 3px;
+  width: 155px;
+ 
 }
 
 .search-input::placeholder {
@@ -85,14 +91,16 @@
 
 .register-patient {
   background-color: #2ecc71;
+  border-radius: 3px;
   color: white;
-  padding: 10px 20px;
-  width: 100%;
+  padding:10px 10.5px;
+  width: auto;
   text-align: left;
   border: none;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  gap: 10px;
 }
 
 .register-patient:hover {
