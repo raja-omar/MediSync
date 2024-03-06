@@ -1,6 +1,5 @@
 import React from 'react';
 import PatientCard from './PatientCard';
-
 const PatientCardContainer = ({ patientData }) => {
   return (
     <div className="patient-card-container">

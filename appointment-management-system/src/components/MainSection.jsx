@@ -1,5 +1,5 @@
 import React from 'react';
-import './MainSection.css'
+import '../styles/MainSection.css'
 import Calendar from './Calendar';
 const MainSection = ({ patientData }) => {
   return (

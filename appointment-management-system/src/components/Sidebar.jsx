@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FaUser, FaUserMd, FaSearch, FaUserPlus } from 'react-icons/fa';
 import PatientRegistrationDialog from './PatientRegistrationForm';
-import './SidebarStyles.css';
+import '../styles/SidebarStyles.css';
 
 const Sidebar = ({ setPatientData }) => {
   const [showDialog, setShowDialog] = useState(false);

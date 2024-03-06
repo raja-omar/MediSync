@@ -1,5 +1,5 @@
 import React from 'react';
-import './PatientCardStyles.css'
+import '../styles/PatientCardStyles.css'
 const PatientCard = ({ firstName, lastName, age, healthCardNumber }) => {
   return (
     <div className="patient-card">
