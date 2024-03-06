@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
-import '../styles/Calendar.css';
+import React, { useState, useRef } from "react";
+import "../styles/Calendar.css";
 
 const Calendar = () => {
   const [currentWeekStart, setCurrentWeekStart] = useState(new Date());
+  const [selectedCells, setSelectedCells] = useState([]);
+  const isMouseDownRef = useRef(false);
 
-  const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+  const daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 
   const getNextWeekStart = () => {
     const nextWeekStart = new Date(currentWeekStart);
@@ -26,6 +28,38 @@ const Calendar = () => {
     setCurrentWeekStart(getPreviousWeekStart());
   };
 
+  const handleMouseDown = (dayIndex, timeIndex) => {
+    isMouseDownRef.current = true;
+    handleCellClick(dayIndex, timeIndex);
+    console.log(`Mouse down on cell ${dayIndex}-${timeIndex}`);
+  };
+
+  const handleMouseEnter = (dayIndex, timeIndex) => {
+    if (isMouseDownRef.current) {
+      // Only continue the selection if the mouse was initially pressed on a cell
+      handleCellClick(dayIndex, timeIndex);
+      console.log(`Mouse enter on cell ${dayIndex}-${timeIndex}`);
+    }
+  };
+
+  const handleMouseUp = () => {
+    isMouseDownRef.current = false;
+    console.log("Mouse up");
+  };
+
+  const handleCellClick = (dayIndex, timeIndex) => {
+    const cellId = `${dayIndex}-${timeIndex}`;
+    if (isMouseDownRef.current) {
+      if (selectedCells.includes(cellId)) {
+        setSelectedCells(selectedCells.filter((cell) => cell !== cellId));
+        console.log(`Deselected cell ${dayIndex}-${timeIndex}`);
+      } else {
+        setSelectedCells([...selectedCells, cellId]);
+        console.log(`Selected cell ${dayIndex}-${timeIndex}`);
+      }
+    }
+  };
+
   const renderDays = () => {
     const currentWeek = [];
     const currentDate = new Date(currentWeekStart);
@@ -43,10 +77,10 @@ const Calendar = () => {
         currentDate.setDate(currentDate.getDate() + 1);
       }
 
-      const formattedDate = currentDate.toLocaleDateString('en-US', {
-        weekday: 'short',
-        month: 'short',
-        day: 'numeric',
+      const formattedDate = currentDate.toLocaleDateString("en-US", {
+        weekday: "short",
+        month: "short",
+        day: "numeric",
       });
 
       currentWeek.push(
@@ -54,7 +88,7 @@ const Calendar = () => {
           <div className="day-date">
             <h3>{formattedDate}</h3>
           </div>
-          {renderCells()}
+          {renderCells(i)}
         </div>
       );
 
@@ -63,7 +97,6 @@ const Calendar = () => {
 
     return currentWeek;
   };
-
 
   const renderTimes = () => {
     const times = [];
@@ -78,11 +111,20 @@ const Calendar = () => {
     return times;
   };
 
-  const renderCells = () => {
+  const renderCells = (dayIndex) => {
     const cells = [];
-    for (let i = 8; i <= 17; i++) {
+    for (let timeIndex = 8; timeIndex <= 17; timeIndex++) {
+      const cellId = `${dayIndex}-${timeIndex}`;
+      const isSelected = selectedCells.includes(cellId);
+
       cells.push(
-        <div key={i} className="cell">
+        <div
+          key={timeIndex}
+          className={`cell ${isSelected ? "selected" : ""}`}
+          onMouseDown={() => handleMouseDown(dayIndex, timeIndex)}
+          onMouseEnter={() => handleMouseEnter(dayIndex, timeIndex)}
+          onMouseUp={handleMouseUp}
+        >
           {/* cells added here*/}
         </div>
       );

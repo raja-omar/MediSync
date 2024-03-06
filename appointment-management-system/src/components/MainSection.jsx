@@ -1,10 +1,10 @@
-import React from 'react';
-import '../styles/MainSection.css'
-import Calendar from './Calendar';
+import React from "react";
+import "../styles/MainSection.css";
+import Calendar from "./Calendar";
 const MainSection = ({ patientData }) => {
   return (
     <div className="main-section">
-    <Calendar />
+      <Calendar />
       {patientData ? (
         <div>
           <h3>Patient Details</h3>
