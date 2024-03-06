@@ -10,14 +10,13 @@
   justify-content: center;
   z-index: 1001;
 }
-
-.modal {
+.modal-dialog {
   background-color: #fff;
   padding: 30px;
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-  position: relative;
   width: 400px;
+  max-width: 90%;
 }
 
 .close-btn {
@@ -31,7 +30,11 @@
   color: #999;
 }
 
-.modal h2 {
+.close-btn:hover {
+  color: #555;
+}
+
+.modal-dialog h2 {
   margin-bottom: 20px;
   color: #333;
 }
@@ -52,6 +55,10 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
+}
+
+.form-group input:focus {
+  border-color: #007bff;
 }
 
 .submit-btn {

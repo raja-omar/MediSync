@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import './PatientRegistrationFormStyles.css';
-const PatientRegistrationDialog = ({ onClose }) => {
+
+import './PatientRegistrationFormStyles.css'
+
+const PatientRegistrationForm = ({ onClose, onSubmit }) => {
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -15,19 +17,12 @@ const PatientRegistrationDialog = ({ onClose }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setFormData({
-      firstName: '',
-      lastName: '',
-      healthCardNumber: '',
-      address: '',
-      age: '',
-    });
-    onClose();
+    onSubmit(formData); // Pass the form data to the parent component (might not work rn)
   };
 
   return (
     <div className="modal-bg">
-      <div className="modal">
+      <div className="modal-dialog">
         <button className="close-btn" onClick={onClose}>
           ×
         </button>
@@ -97,4 +92,4 @@ const PatientRegistrationDialog = ({ onClose }) => {
   );
 };
 
-export default PatientRegistrationDialog;
+export default PatientRegistrationForm;

@@ -1,0 +1,27 @@
+.patient-card {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+.patient-card h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.patient-card p {
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.patient-card .details-label {
+  font-weight: bold;
+}
+
+.patient-card:hover {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
