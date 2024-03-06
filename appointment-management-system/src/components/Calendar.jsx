@@ -68,7 +68,7 @@ const Calendar = () => {
       // Start at 9 AM and end at 5 PM
       timeSlots.push(
         <div key={i} className="time-slot">
-          {i < 12 ? `${i} AM` : `${i - 12} PM`}
+          {i < 12 ? `${i} AM` : i === 12 ? '12 PM': `${i - 12} PM`}
         </div>
       );
     }
