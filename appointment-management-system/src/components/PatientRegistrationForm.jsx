@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import './PatientRegistrationFormStyles.css'
+import './PatientRegistrationFormStyles.css';
 
 const PatientRegistrationForm = ({ onClose, onSubmit }) => {
   const [formData, setFormData] = useState({
@@ -17,14 +17,14 @@ const PatientRegistrationForm = ({ onClose, onSubmit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(formData); // Pass the form data to the parent component (might not work rn)
+    onSubmit(formData);
   };
 
   return (
     <div className="modal-bg">
       <div className="modal-dialog">
         <button className="close-btn" onClick={onClose}>
-          ×
+          X
         </button>
         <h2>Register New Patient</h2>
         <form onSubmit={handleSubmit}>
@@ -83,9 +83,14 @@ const PatientRegistrationForm = ({ onClose, onSubmit }) => {
               required
             />
           </div>
-          <button type="submit" className="submit-btn">
-            Submit
-          </button>
+          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <button type="submit" className="submit-btn">
+              Submit
+            </button>
+            <button type="button" className="cancel-btn" onClick={onClose}>
+              Cancel
+            </button>
+          </div>
         </form>
       </div>
     </div>

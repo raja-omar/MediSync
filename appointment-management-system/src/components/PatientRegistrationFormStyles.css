@@ -28,7 +28,9 @@
   border: none;
   cursor: pointer;
   color: #999;
+  z-index: 1002; /* Ensure the close button is above the modal content */
 }
+
 
 .close-btn:hover {
   color: #555;
@@ -72,6 +74,16 @@
   transition: background-color 0.3s ease;
 }
 
+.cancel-btn {
+  background-color: #de3333;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
 .submit-btn:hover {
   background-color: #0056b3;
 }
