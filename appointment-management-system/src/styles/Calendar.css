@@ -52,35 +52,27 @@
   margin: 0;
   font-size: 14px;
 }
-
 .time-column {
   display: flex;
   flex-direction: column;
-  border-right: 1px solid #ccc;
-  margin-top: 42.5px;
-  background-color: #f7f7f7; 
 }
 
-.time-cell {
-  height: 40px;
-  padding: 5px;
+.time-slot {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-bottom: 1px solid #ccc;
-  display: flex; 
-  align-items: center; 
-}
-
-.time-label {
   font-size: 14px;
-  color: #666;
 }
 
-.time-cell:nth-child(odd) {
-  background-color: #fff; 
+.time-slot:first-child {
+  border-top: 1px solid #ccc;
 }
 
 .cell {
   border-bottom: 1px solid #ccc;
-  height: 50px; 
+  height: 50px;
   position: relative;
 }
 
@@ -106,7 +98,7 @@
 }
 
 .block-mode {
-  pointer-events: none; 
+  pointer-events: none;
 }
 
 .lightred-bg {

@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
 import '../styles/Calendar.css';
 
-let draggedPatient; 
-let draggedCellId; 
+let draggedPatient;
+let draggedCellId;
 
 const Calendar = () => {
   const [currentWeekStart, setCurrentWeekStart] = useState(new Date());
   const [blockTimeMode, setBlockTimeMode] = useState(false);
-  const [cellsData, setCellsData] = useState({}); 
+  const [cellsData, setCellsData] = useState({});
 
   const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
 
   const handleDragStart = (event, patientData, cellId) => {
-    event.dataTransfer.setData('text/plain', ''); 
-    draggedPatient = patientData; 
-    draggedCellId = cellId; 
+    event.dataTransfer.setData('text/plain', '');
+    draggedPatient = patientData;
+    draggedCellId = cellId;
   };
 
   const handleDrop = (event, dayIndex, hour) => {
@@ -62,6 +62,26 @@ const Calendar = () => {
     setBlockTimeMode(!blockTimeMode);
   };
 
+  const renderTimeColumn = () => {
+    const timeSlots = [];
+    for (let i = 9; i <= 17; i++) {
+      // Start at 9 AM and end at 5 PM
+      timeSlots.push(
+        <div key={i} className="time-slot">
+          {i < 12 ? `${i} AM` : `${i - 12} PM`}
+        </div>
+      );
+    }
+    // this is so clutch
+    const cellHeight = document.querySelector('.day-date').offsetHeight;
+
+    return (
+      <div className="time-column" style={{ marginTop: cellHeight }}>
+        {timeSlots}
+      </div>
+    );
+  };
+
   const renderDays = () => {
     const currentWeek = [];
     const currentDate = new Date(currentWeekStart);
@@ -98,7 +118,8 @@ const Calendar = () => {
   };
   const renderCells = (dayIndex) => {
     const cells = [];
-    for (let i = 8; i <= 17; i++) {
+    for (let i = 9; i <= 17; i++) {
+      // Start at 9 AM and end at 5 PM
       const cellId = `${dayIndex}-${i}`;
       cells.push(
         <div
@@ -145,7 +166,10 @@ const Calendar = () => {
           {blockTimeMode ? 'Disable Block Time' : 'Block Time'}
         </button>
       </div>
-      <div className="calendar-body">{renderDays()}</div>
+      <div className="calendar-body">
+        {renderTimeColumn()}
+        {renderDays()}
+      </div>
       <div
         draggable="true"
         onDragStart={(event) =>
