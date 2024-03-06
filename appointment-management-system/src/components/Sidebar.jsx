@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
-import { FaUser, FaUserMd, FaSearch, FaUserPlus } from 'react-icons/fa';
-import PatientRegistrationDialog from './PatientRegistrationForm';
-import '../styles/SidebarStyles.css';
+import React, { useState, useEffect } from "react";
+// import PatientCard from "./PatientCard";
+import { FaUser, FaUserMd, FaSearch, FaUserPlus } from "react-icons/fa";
+import PatientRegistrationDialog from "./PatientRegistrationForm";
+import "../styles/SidebarStyles.css";
 
-const Sidebar = ({ setPatientData }) => {
+const Sidebar = ({ patientData, setPatientData }) => {
   const [showDialog, setShowDialog] = useState(false);
   const [patientDropdownVisible, setPatientDropdownVisible] = useState(false);
   const [doctorDropdownVisible, setDoctorDropdownVisible] = useState(false);
+  // const [searchResults, setSearchResults] = useState([]);
 
   const togglePatientDropdown = () => {
     setPatientDropdownVisible(!patientDropdownVisible);
@@ -32,8 +34,30 @@ const Sidebar = ({ setPatientData }) => {
 
   const handleFormSubmit = (formData) => {
     setPatientData(formData);
+    localStorage.setItem("Patient Data: ", JSON.stringify(formData));
     setShowDialog(false);
   };
+
+  useEffect(() => {
+    // This block will run when newPatientRegistered changes
+    if (patientData) {
+      // Additional logic to handle the effect of a new patient registration
+      console.log("New patient registered!");
+      // You can perform any additional actions here
+      // ...
+
+      // Reset the flag after handling the effect
+      // setNewPatientRegistered(false);
+    }
+  }, [patientData]);
+
+  // const handleSearch = (searchTerm) => {
+  //   const patients = JSON.parse(localStorage.getItem("patientData")) || [];
+  //   const results = patients.filter((patient) =>
+  //     patient.firstName.includes(searchTerm)
+  //   );
+  //   setSearchResults(results);
+  // };
 
   return (
     <div className="sidebar">
@@ -42,7 +66,7 @@ const Sidebar = ({ setPatientData }) => {
           <FaUser /> Patient
         </button>
         <div
-          className={`dropdown-content ${patientDropdownVisible ? 'open' : ''}`}
+          className={`dropdown-content ${patientDropdownVisible ? "open" : ""}`}
         >
           <button
             className="dropdown-item register-patient"
@@ -55,8 +79,33 @@ const Sidebar = ({ setPatientData }) => {
               type="text"
               placeholder="Search existing patient  &#x1F50D; "
               className="search-input"
+              // onChange={(e) => handleSearch(e.target.value)}
             />
           </div>
+          <div>
+            {patientData ? (
+              <div>
+                <div className="patient-card">
+                  <h2>
+                    {patientData.firstName} {patientData.lastName}
+                  </h2>
+                  {/* Add more patient details here */}
+                </div>
+              </div>
+            ) : (
+              <p>
+                lorem ipsum
+                khwksdflksnfkl;dsjfklsjdlbfjsbfjksbfjksnfjsdabfjdsanfdsnfbjdsabfds,fbnjkdslbfads;adde
+                jksfdbjksabfsjkdabfsjklbfsdf skjbfjsadkabfdsakfd
+              </p>
+            )}
+          </div>
+
+          {/* <div>
+            {searchResults.map((patient) => (
+              <PatientCard key={patient.id} patient={patient} />
+            ))}
+          </div> */}
         </div>
       </div>
       <div className="dropdown">
@@ -64,7 +113,7 @@ const Sidebar = ({ setPatientData }) => {
           <FaUserMd /> Doctor
         </button>
         <div
-          className={`dropdown-content ${doctorDropdownVisible ? 'open' : ''}`}
+          className={`dropdown-content ${doctorDropdownVisible ? "open" : ""}`}
         >
           <div className="search-container">
             <FaSearch className="search-icon" />
