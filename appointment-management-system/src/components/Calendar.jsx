@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "../styles/Calendar.css";
 
 const Calendar = () => {
@@ -7,6 +7,9 @@ const Calendar = () => {
   const isMouseDownRef = useRef(false);
 
   const daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+  useEffect(() => {
+    localStorage.setItem("selectedCells", JSON.stringify(selectedCells));
+  }, [selectedCells]);
 
   const getNextWeekStart = () => {
     const nextWeekStart = new Date(currentWeekStart);
