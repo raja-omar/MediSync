@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-// import PatientCard from "./PatientCard";
+import PatientCard from "./PatientCard";
 import { FaUser, FaUserMd, FaSearch, FaUserPlus } from "react-icons/fa";
 import PatientRegistrationDialog from "./PatientRegistrationForm";
 import "../styles/SidebarStyles.css";
@@ -38,19 +38,6 @@ const Sidebar = ({ patientData, setPatientData }) => {
     setShowDialog(false);
   };
 
-  useEffect(() => {
-    // This block will run when newPatientRegistered changes
-    if (patientData) {
-      // Additional logic to handle the effect of a new patient registration
-      console.log("New patient registered!");
-      // You can perform any additional actions here
-      // ...
-
-      // Reset the flag after handling the effect
-      // setNewPatientRegistered(false);
-    }
-  }, [patientData]);
-
   // const handleSearch = (searchTerm) => {
   //   const patients = JSON.parse(localStorage.getItem("patientData")) || [];
   //   const results = patients.filter((patient) =>
@@ -86,10 +73,8 @@ const Sidebar = ({ patientData, setPatientData }) => {
             {patientData ? (
               <div>
                 <div className="patient-card">
-                  <h2>
-                    {patientData.firstName} {patientData.lastName}
-                  </h2>
                   {/* Add more patient details here */}
+                  <PatientCard patientData={patientData} />
                 </div>
               </div>
             ) : (
