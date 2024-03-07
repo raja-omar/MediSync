@@ -1,49 +1,43 @@
-.modal-bg {
+/* Add these styles to your existing CSS file */
+
+.modal-wrapper {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); 
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1001; 
+  z-index: 9999; /* Ensure the modal is above other content */
 }
 
-.modal-dialog {
-  background-color: #ffffff;
-  padding: 30px;
+.modal {
+  background-color: #fefefe;
+  padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-  width: 400px;
-  max-width: 90%;
-  position: relative; 
+  position: relative;
+  z-index: 10000; /* Ensure the modal is above the backdrop */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-.close-btn {
-  position: absolute; 
-  top: 10px;
-  right: 10px;
-  font-size: 24px;
-  background: transparent;
+.modal-content {
+  margin-top: 20px;
+}
+
+.modal-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.modal-buttons button {
+  margin: 0 10px;
+  padding: 10px 20px;
   border: none;
+  border-radius: 5px;
   cursor: pointer;
-  color: #555555;
-  z-index: 1002; 
+  transition: background-color 0.3s ease;
 }
 
-.close-btn:hover {
-  color: #777777;
-}
-
-.modal-dialog h2 {
-  margin-bottom: 20px;
-  color: #333333;
-  font-size: 24px;
-}
-
-.modal-dialog p {
-  color: #666666;
-  font-size: 16px;
-}
