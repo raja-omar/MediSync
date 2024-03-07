@@ -8,24 +8,37 @@
   margin-bottom: 10px;
   display: flex;
   justify-content: space-between;
+  align-items: center; /* Align buttons vertically in the center */
+  background-color: rgba(255, 255, 255, 0.8); /* Light and transparent background */
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .nav-button {
-  background-color: #007bff;
+  background-color: #0056b3; /* Darker colored buttons */
   color: white;
   border: none;
   padding: 8px 12px;
   cursor: pointer;
-  margin-right: 10px;
   border-radius: 5px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.nav-button:last-child {
-  margin-right: 0;
+.nav-button:not(:last-child) {
+  margin-right: 10px; /* Add spacing between buttons */
+}
+
+.nav-button.block-time {
+  background-color: #ff6347; /* Red color for Block Time button */
 }
 
 .nav-button:hover {
-  background-color: #0056b3;
+  background-color: #004080; /* Darker background color on hover */
+  transform: scale(1.05);
+}
+
+.nav-button:active {
+  transform: scale(0.95);
 }
 
 .calendar-body {
@@ -90,6 +103,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  transition: all 0.3s ease;
+}
+
+.patient-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
 }
 
 .delete-patient-btn {
