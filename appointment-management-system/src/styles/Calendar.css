@@ -85,6 +85,6 @@
 }
 
 .calendar .cell.selected {
-  background-color: lightblue; /* Change the background color for selected cells */
-  border: 1px solid darkblue; /* Add a border for selected cells */
+  background-color: pink; /* Change the background color for selected cells */
+  border: 1px solid black; /* Add a border for selected cells */
 }
