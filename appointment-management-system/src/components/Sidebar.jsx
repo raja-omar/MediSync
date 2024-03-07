@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { FaUser, FaUserMd, FaSearch, FaUserPlus } from 'react-icons/fa';
-import PatientRegistrationDialog from './PatientRegistrationForm';
-import '../styles/SidebarStyles.css';
+import React, { useState } from "react";
+import { FaUser, FaUserMd, FaSearch, FaUserPlus } from "react-icons/fa";
+import PatientRegistrationDialog from "./PatientRegistrationForm";
+import "../styles/SidebarStyles.css";
 
 const Sidebar = ({ setPatientData }) => {
   const [showDialog, setShowDialog] = useState(false);
@@ -42,7 +42,7 @@ const Sidebar = ({ setPatientData }) => {
           <FaUser /> Patient
         </button>
         <div
-          className={`dropdown-content ${patientDropdownVisible ? 'open' : ''}`}
+          className={`dropdown-content ${patientDropdownVisible ? "open" : ""}`}
         >
           <button
             className="dropdown-item register-patient"
@@ -64,7 +64,7 @@ const Sidebar = ({ setPatientData }) => {
           <FaUserMd /> Doctor
         </button>
         <div
-          className={`dropdown-content ${doctorDropdownVisible ? 'open' : ''}`}
+          className={`dropdown-content ${doctorDropdownVisible ? "open" : ""}`}
         >
           <div className="search-container">
             <FaSearch className="search-icon" />
@@ -76,6 +76,67 @@ const Sidebar = ({ setPatientData }) => {
           </div>
         </div>
       </div>
+      <div>
+        <table border="0" className="invisible">
+          <tr>
+            <td>Alfreds Futterkiste</td>
+          </tr>
+          <tr>
+            <td>Alfreds Futterkiste</td>
+          </tr>
+          <tr>
+            <td>Alfreds Futterkiste</td>
+          </tr>
+          <tr>
+            <td>Alfreds Futterkiste</td>
+          </tr>
+          <tr>
+            <td>Alfreds Futterkiste</td>
+          </tr>
+          <tr>
+            <td>Alfreds Futterkiste</td>
+          </tr>
+          <tr>
+            <td>Alfreds Futterkiste</td>
+          </tr>
+          <tr>
+            <td>Alfreds Futterkiste</td>
+          </tr>
+          <tr>
+            <td>Alfreds Futterkiste</td>
+          </tr>
+          <tr>
+            <td>Alfreds Futterkiste</td>
+          </tr>
+          <tr>
+            <td>Alfreds Futterkiste</td>
+          </tr>
+        </table>
+      </div>
+      <div className="dropbtn">
+        <h3>Upcoming Appointments</h3>
+        <br></br>
+      </div>
+
+      <div className="drag-card">
+        <h3>10:00: Dr Heinz Ketchup</h3>
+        <p>Saadman R.</p>
+      </div>
+      <div>
+        <br></br>
+      </div>
+      <div className="drag-card">
+        <h3>11:00: Dr Smit S.</h3>
+        <p>Prat P.</p>
+      </div>
+      <div>
+        <br></br>
+      </div>
+      <div className="drag-card">
+        <h3>1:00: Dr Heinz Ketchup</h3>
+        <p>Omar R.</p>
+      </div>
+
       {showDialog && (
         <PatientRegistrationDialog
           onClose={closeDialog}

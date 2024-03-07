@@ -1,13 +1,13 @@
-import React from 'react';
-import '../styles/MainSection.css';
-import Calendar from './Calendar';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
+import React from "react";
+import "../styles/MainSection.css";
+import Calendar from "./Calendar";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 
 const MainSection = ({ patientData }) => {
   return (
     <div className="main-section">
-        <Calendar />
+      <Calendar />
       {/* {patientData ? (
         <div>
           <h3>Patient Details</h3>
