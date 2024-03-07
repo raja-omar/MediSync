@@ -55,6 +55,7 @@
 .time-column {
   display: flex;
   flex-direction: column;
+  margin-top: 41.5px;
 }
 
 .time-slot {
@@ -127,4 +128,54 @@
 .drag-card:active {
   transform: translateY(0);
   box-shadow: none;
+}
+
+/* Add these styles to your existing CSS file */
+.modal-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999; /* Ensure the modal is above other content */
+}
+
+.modal {
+  background-color: #fefefe;
+  padding: 20px;
+  border-radius: 10px;
+  position: relative;
+  z-index: 10000; /* Ensure the modal is above the backdrop */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  margin-top: 20px;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Apply backdrop filter to blur the background */
+body.modal-open {
+  overflow: hidden; /* Disable scrolling */
+}
+
+/* Add modal-open class to body when modal is open */
+body.modal-open .calendar {
+  filter: blur(50px); /* Blur the background */
+}
+
+/* Ensure the calendar stays behind the modal */
+body.modal-open .calendar {
+  pointer-events: none; /* Disable pointer events */
 }

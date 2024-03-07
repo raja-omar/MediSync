@@ -1,0 +1,51 @@
+/* ErrorModal.css */
+
+.modal-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1001; /* Ensure the modal is above other content */
+}
+
+.modal-dialog {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  width: 400px;
+  max-width: 90%;
+  position: relative; /* Add position relative */
+}
+
+.close-btn {
+  position: absolute; /* Position the close button relative to the modal */
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #555555;
+  z-index: 1002; /* Ensure the close button is above the modal content */
+}
+
+.close-btn:hover {
+  color: #777777;
+}
+
+.modal-dialog h2 {
+  margin-bottom: 20px;
+  color: #333333;
+  font-size: 24px;
+}
+
+.modal-dialog p {
+  color: #666666;
+  font-size: 16px;
+}

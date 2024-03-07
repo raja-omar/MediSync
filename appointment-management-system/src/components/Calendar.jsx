@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/Calendar.css';
+import ErrorModal from './ErrorModal';
 
 let draggedPatient;
 let draggedCellId;
@@ -8,6 +9,7 @@ const Calendar = () => {
   const [currentWeekStart, setCurrentWeekStart] = useState(new Date());
   const [blockTimeMode, setBlockTimeMode] = useState(false);
   const [cellsData, setCellsData] = useState({});
+  const [showErrorModal, setShowErrorModal] = useState(false); // State to manage the visibility of the error modal
 
   const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
 
@@ -20,18 +22,32 @@ const Calendar = () => {
   const handleDrop = (event, dayIndex, hour) => {
     event.preventDefault();
     const cellId = `${dayIndex}-${hour}`;
+    if (!event.target.classList.contains('lightred-bg')) {
+      // Remove the patient card from its previous location if it exists
+      const updatedCellsData = { ...cellsData };
+      Object.keys(updatedCellsData).forEach((key) => {
+        if (updatedCellsData[key] === draggedPatient) {
+          delete updatedCellsData[key];
+        }
+      });
 
-    // Remove the patient card from its previous location if it exists
-    const updatedCellsData = { ...cellsData };
-    Object.keys(updatedCellsData).forEach((key) => {
-      if (updatedCellsData[key] === draggedPatient) {
-        delete updatedCellsData[key];
-      }
-    });
+      // Update the new cell with the patient card
+      updatedCellsData[cellId] = draggedPatient;
+      setCellsData(updatedCellsData);
+    } else {
+      console.log('NUH UH');
+      setShowErrorModal(true);
 
-    // Update the new cell with the patient card
-    updatedCellsData[cellId] = draggedPatient;
-    setCellsData(updatedCellsData);
+      /* 
+
+      THROW UP A MODAL IN THIS CASE 
+      
+      */
+    }
+  };
+
+  const handleCloseErrorModal = () => {
+    setShowErrorModal(false);
   };
 
   const handleDragOver = (event) => {
@@ -68,18 +84,14 @@ const Calendar = () => {
       // Start at 9 AM and end at 5 PM
       timeSlots.push(
         <div key={i} className="time-slot">
-          {i < 12 ? `${i} AM` : i === 12 ? '12 PM': `${i - 12} PM`}
+          {i < 12 ? `${i} AM` : i === 12 ? '12 PM' : `${i - 12} PM`}
         </div>
       );
     }
     // this is so clutch
-    const cellHeight = document.querySelector('.day-date').offsetHeight;
+    // const cellHeight = document.querySelector('.day-date').offsetHeight;
 
-    return (
-      <div className="time-column" style={{ marginTop: cellHeight }}>
-        {timeSlots}
-      </div>
-    );
+    return <div className="time-column">{timeSlots}</div>;
   };
 
   const renderDays = () => {
@@ -116,6 +128,16 @@ const Calendar = () => {
     delete updatedCellsData[cellId];
     setCellsData(updatedCellsData);
   };
+
+  const handleCellClick = (event) => {
+    if (blockTimeMode) {
+      if (event.target.classList.contains('lightred-bg')) {
+        event.target.classList.remove('lightred-bg');
+      } else {
+        event.target.classList.add('lightred-bg');
+      }
+    }
+  };
   const renderCells = (dayIndex) => {
     const cells = [];
     for (let i = 9; i <= 17; i++) {
@@ -126,6 +148,7 @@ const Calendar = () => {
           key={cellId}
           id={cellId}
           className="cell"
+          onClick={(event) => handleCellClick(event)}
           onDrop={(event) => handleDrop(event, dayIndex, i)}
           onDragOver={handleDragOver}
           draggable={cellsData[cellId] ? 'true' : 'false'} // Enable dragging only if cell contains patient
@@ -154,36 +177,39 @@ const Calendar = () => {
   };
 
   return (
-    <div className="calendar">
-      <div className="calendar-header">
-        <button onClick={goToPreviousWeek} className="nav-button">
-          Previous Week
-        </button>
-        <button onClick={goToNextWeek} className="nav-button">
-          Next Week
-        </button>
-        <button onClick={handleBlockTimeToggle} className="nav-button">
-          {blockTimeMode ? 'Disable Block Time' : 'Block Time'}
-        </button>
+    <>
+      <div className="calendar">
+        <div className="calendar-header">
+          <button onClick={goToPreviousWeek} className="nav-button">
+            Previous Week
+          </button>
+          <button onClick={goToNextWeek} className="nav-button">
+            Next Week
+          </button>
+          <button onClick={handleBlockTimeToggle} className="nav-button">
+            {blockTimeMode ? 'Disable Block Time' : 'Block Time'}
+          </button>
+        </div>
+        <div className="calendar-body">
+          {renderTimeColumn()}
+          {renderDays()}
+        </div>
+        <div
+          draggable="true"
+          onDragStart={(event) =>
+            handleDragStart(event, {
+              name: 'John Doe',
+              healthCardNumber: '12345',
+            })
+          }
+          className="drag-card"
+        >
+          <h3>John Doe</h3>
+          <p>Health ID: 12345</p>
+        </div>
       </div>
-      <div className="calendar-body">
-        {renderTimeColumn()}
-        {renderDays()}
-      </div>
-      <div
-        draggable="true"
-        onDragStart={(event) =>
-          handleDragStart(event, {
-            name: 'John Doe',
-            healthCardNumber: '12345',
-          })
-        }
-        className="drag-card"
-      >
-        <h3>John Doe</h3>
-        <p>Health ID: 12345</p>
-      </div>
-    </div>
+      {showErrorModal && <ErrorModal onClose={handleCloseErrorModal} />}{' '}
+    </>
   );
 };
 
