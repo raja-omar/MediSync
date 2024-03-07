@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import '../styles/Calendar.css';
+import React, { useState } from "react";
+import "../styles/Calendar.css";
 
 let draggedPatient;
 let draggedCellId;
@@ -9,10 +9,10 @@ const Calendar = () => {
   const [blockTimeMode, setBlockTimeMode] = useState(false);
   const [cellsData, setCellsData] = useState({});
 
-  const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+  const daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 
   const handleDragStart = (event, patientData, cellId) => {
-    event.dataTransfer.setData('text/plain', '');
+    event.dataTransfer.setData("text/plain", "");
     draggedPatient = patientData;
     draggedCellId = cellId;
   };
@@ -20,6 +20,7 @@ const Calendar = () => {
   const handleDrop = (event, dayIndex, hour) => {
     event.preventDefault();
     const cellId = `${dayIndex}-${hour}`;
+    console.log(`Dragged cells: ${draggedCellId} to ${cellId}`);
 
     // Remove the patient card from its previous location if it exists
     const updatedCellsData = { ...cellsData };
@@ -64,22 +65,20 @@ const Calendar = () => {
 
   const renderTimeColumn = () => {
     const timeSlots = [];
+    timeSlots.push(<div className="time-slot"> </div>);
+
     for (let i = 9; i <= 17; i++) {
       // Start at 9 AM and end at 5 PM
       timeSlots.push(
         <div key={i} className="time-slot">
-          {i < 12 ? `${i} AM` : i === 12 ? '12 PM': `${i - 12} PM`}
+          {i < 12 ? `${i} AM` : i === 12 ? "12 PM" : `${i - 12} PM`}
         </div>
       );
     }
     // this is so clutch
-    const cellHeight = document.querySelector('.day-date').offsetHeight;
+    // const cellHeight = document.querySelector(".day-date").offsetHeight;
 
-    return (
-      <div className="time-column" style={{ marginTop: cellHeight }}>
-        {timeSlots}
-      </div>
-    );
+    return <div className="time-column">{timeSlots}</div>;
   };
 
   const renderDays = () => {
@@ -91,10 +90,10 @@ const Calendar = () => {
         currentDate.setDate(currentDate.getDate() + 1);
       }
 
-      const formattedDate = currentDate.toLocaleDateString('en-US', {
-        weekday: 'short',
-        month: 'short',
-        day: 'numeric',
+      const formattedDate = currentDate.toLocaleDateString("en-US", {
+        weekday: "short",
+        month: "short",
+        day: "numeric",
       });
 
       currentWeek.push(
@@ -128,7 +127,7 @@ const Calendar = () => {
           className="cell"
           onDrop={(event) => handleDrop(event, dayIndex, i)}
           onDragOver={handleDragOver}
-          draggable={cellsData[cellId] ? 'true' : 'false'} // Enable dragging only if cell contains patient
+          draggable={cellsData[cellId] ? "true" : "false"} // Enable dragging only if cell contains patient
           onDragStart={(event) =>
             handleDragStart(event, cellsData[cellId], cellId)
           }
@@ -159,11 +158,11 @@ const Calendar = () => {
         <button onClick={goToPreviousWeek} className="nav-button">
           Previous Week
         </button>
+        {/* <button onClick={handleBlockTimeToggle} className="nav-button">
+          {blockTimeMode ? "Disable Block Time" : "Block Time"}{" "}
+        </button> */}
         <button onClick={goToNextWeek} className="nav-button">
           Next Week
-        </button>
-        <button onClick={handleBlockTimeToggle} className="nav-button">
-          {blockTimeMode ? 'Disable Block Time' : 'Block Time'}
         </button>
       </div>
       <div className="calendar-body">
@@ -174,8 +173,8 @@ const Calendar = () => {
         draggable="true"
         onDragStart={(event) =>
           handleDragStart(event, {
-            name: 'John Doe',
-            healthCardNumber: '12345',
+            name: "John Doe",
+            healthCardNumber: "12345",
           })
         }
         className="drag-card"
