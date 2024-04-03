@@ -1,3 +1,9 @@
-# MediSync
+## MediSync
 
-to run it, cd into the folder then do "npm i" then do "npm run dev"
+# How to run the program:
+
+-  cd appointment-management-system
+
+-  npm i
+
+-  npm run dev
