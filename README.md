@@ -1,6 +1,6 @@
-## MediSync
+# MediSync
 
-# How to run the program:
+## How to run the program:
 
 -  cd appointment-management-system
 
