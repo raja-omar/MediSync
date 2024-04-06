@@ -1,10 +1,43 @@
-import React, { useState } from 'react';
-import '../styles/Calendar.css';
+import React, { useState } from "react";
+import "../styles/Calendar.css";
+
+let draggedPatient;
+let draggedCellId;
 
 const Calendar = () => {
   const [currentWeekStart, setCurrentWeekStart] = useState(new Date());
+  const [blockTimeMode, setBlockTimeMode] = useState(false);
+  const [cellsData, setCellsData] = useState({});
 
-  const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+  const daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+
+  const handleDragStart = (event, patientData, cellId) => {
+    event.dataTransfer.setData("text/plain", "");
+    draggedPatient = patientData;
+    draggedCellId = cellId;
+  };
+
+  const handleDrop = (event, dayIndex, hour) => {
+    event.preventDefault();
+    const cellId = `${dayIndex}-${hour}`;
+    console.log(`Dragged cells: ${draggedCellId} to ${cellId}`);
+
+    // Remove the patient card from its previous location if it exists
+    const updatedCellsData = { ...cellsData };
+    Object.keys(updatedCellsData).forEach((key) => {
+      if (updatedCellsData[key] === draggedPatient) {
+        delete updatedCellsData[key];
+      }
+    });
+
+    // Update the new cell with the patient card
+    updatedCellsData[cellId] = draggedPatient;
+    setCellsData(updatedCellsData);
+  };
+
+  const handleDragOver = (event) => {
+    event.preventDefault();
+  };
 
   const getNextWeekStart = () => {
     const nextWeekStart = new Date(currentWeekStart);
@@ -26,27 +59,41 @@ const Calendar = () => {
     setCurrentWeekStart(getPreviousWeekStart());
   };
 
+  const handleBlockTimeToggle = () => {
+    setBlockTimeMode(!blockTimeMode);
+  };
+
+  const renderTimeColumn = () => {
+    const timeSlots = [];
+    timeSlots.push(<div className="time-slot"> </div>);
+
+    for (let i = 9; i <= 17; i++) {
+      // Start at 9 AM and end at 5 PM
+      timeSlots.push(
+        <div key={i} className="time-slot">
+          {i < 12 ? `${i} AM` : i === 12 ? "12 PM" : `${i - 12} PM`}
+        </div>
+      );
+    }
+    // this is so clutch
+    // const cellHeight = document.querySelector(".day-date").offsetHeight;
+
+    return <div className="time-column">{timeSlots}</div>;
+  };
+
   const renderDays = () => {
     const currentWeek = [];
     const currentDate = new Date(currentWeekStart);
 
-    currentWeek.push(
-      <div key="times" className="time-column">
-        {renderTimes()}
-      </div>
-    );
-
     for (let i = 0; i < 5; i++) {
-      // Loop only for 5 days (Mon-Fri)
-      // Skip Saturday and Sunday
       while (currentDate.getDay() === 6 || currentDate.getDay() === 0) {
         currentDate.setDate(currentDate.getDate() + 1);
       }
 
-      const formattedDate = currentDate.toLocaleDateString('en-US', {
-        weekday: 'short',
-        month: 'short',
-        day: 'numeric',
+      const formattedDate = currentDate.toLocaleDateString("en-US", {
+        weekday: "short",
+        month: "short",
+        day: "numeric",
       });
 
       currentWeek.push(
@@ -54,7 +101,7 @@ const Calendar = () => {
           <div className="day-date">
             <h3>{formattedDate}</h3>
           </div>
-          {renderCells()}
+          {renderCells(i)}
         </div>
       );
 
@@ -63,27 +110,42 @@ const Calendar = () => {
 
     return currentWeek;
   };
-
-
-  const renderTimes = () => {
-    const times = [];
-    for (let i = 8; i <= 17; i++) {
-      const timeLabel = i < 10 ? `0${i}:00` : `${i}:00`; // Format time label
-      times.push(
-        <div key={i} className="time-cell">
-          <div className="time-label">{timeLabel}</div>
-        </div>
-      );
-    }
-    return times;
+  const handleDeletePatient = (cellId) => {
+    const updatedCellsData = { ...cellsData };
+    delete updatedCellsData[cellId];
+    setCellsData(updatedCellsData);
   };
-
-  const renderCells = () => {
+  const renderCells = (dayIndex) => {
     const cells = [];
-    for (let i = 8; i <= 17; i++) {
+    for (let i = 9; i <= 17; i++) {
+      // Start at 9 AM and end at 5 PM
+      const cellId = `${dayIndex}-${i}`;
       cells.push(
-        <div key={i} className="cell">
-          {/* cells added here*/}
+        <div
+          key={cellId}
+          id={cellId}
+          className="cell"
+          onDrop={(event) => handleDrop(event, dayIndex, i)}
+          onDragOver={handleDragOver}
+          draggable={cellsData[cellId] ? "true" : "false"} // Enable dragging only if cell contains patient
+          onDragStart={(event) =>
+            handleDragStart(event, cellsData[cellId], cellId)
+          }
+        >
+          {cellsData[cellId] && (
+            <div className="patient-card">
+              <div className="patient-info">
+                <h3>{cellsData[cellId].name}</h3>
+                <p>Health ID: {cellsData[cellId].healthCardNumber}</p>
+              </div>
+              <button
+                className="delete-patient-btn"
+                onClick={() => handleDeletePatient(cellId)}
+              >
+                ❌
+              </button>
+            </div>
+          )}
         </div>
       );
     }
@@ -96,11 +158,30 @@ const Calendar = () => {
         <button onClick={goToPreviousWeek} className="nav-button">
           Previous Week
         </button>
+        {/* <button onClick={handleBlockTimeToggle} className="nav-button">
+          {blockTimeMode ? "Disable Block Time" : "Block Time"}{" "}
+        </button> */}
         <button onClick={goToNextWeek} className="nav-button">
           Next Week
         </button>
       </div>
-      <div className="calendar-body">{renderDays()}</div>
+      <div className="calendar-body">
+        {renderTimeColumn()}
+        {renderDays()}
+      </div>
+      <div
+        draggable="true"
+        onDragStart={(event) =>
+          handleDragStart(event, {
+            name: "John Doe",
+            healthCardNumber: "12345",
+          })
+        }
+        className="drag-card"
+      >
+        <h3>John Doe</h3>
+        <p>Health ID: 12345</p>
+      </div>
     </div>
   );
 };

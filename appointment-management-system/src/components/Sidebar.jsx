@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { FaUser, FaUserMd, FaSearch, FaUserPlus } from 'react-icons/fa';
-import PatientRegistrationDialog from './PatientRegistrationForm';
-import '../styles/SidebarStyles.css';
+import React, { useState } from "react";
+import { FaUser, FaUserMd, FaSearch, FaUserPlus } from "react-icons/fa";
+import PatientRegistrationDialog from "./PatientRegistrationForm";
+import "../styles/SidebarStyles.css";
 
 const Sidebar = ({ setPatientData }) => {
   const [showDialog, setShowDialog] = useState(false);
@@ -42,7 +42,7 @@ const Sidebar = ({ setPatientData }) => {
           <FaUser /> Patient
         </button>
         <div
-          className={`dropdown-content ${patientDropdownVisible ? 'open' : ''}`}
+          className={`dropdown-content ${patientDropdownVisible ? "open" : ""}`}
         >
           <button
             className="dropdown-item register-patient"
@@ -64,7 +64,7 @@ const Sidebar = ({ setPatientData }) => {
           <FaUserMd /> Doctor
         </button>
         <div
-          className={`dropdown-content ${doctorDropdownVisible ? 'open' : ''}`}
+          className={`dropdown-content ${doctorDropdownVisible ? "open" : ""}`}
         >
           <div className="search-container">
             <FaSearch className="search-icon" />
@@ -74,6 +74,10 @@ const Sidebar = ({ setPatientData }) => {
               className="search-input"
             />
           </div>
+          <div className="drag-card">
+            <h3>Dr. Heinz Doofenshmirtz</h3>
+            <p>practition: Orthopedics</p>
+          </div>
         </div>
       </div>
       {showDialog && (
@@ -82,7 +86,14 @@ const Sidebar = ({ setPatientData }) => {
           onSubmit={handleFormSubmit}
         />
       )}
+      <div className="upcoming-appointments">
+        {/* make up some upcoming appointments to display here for receptionist */}
+      </div>
+      <div className="Doctor Notes">
+        {/* make up some upcoming appointments to display here for receptionist */}
+      </div>
     </div>
+    // </div>
   );
 };
 
