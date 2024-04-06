@@ -16,6 +16,4 @@ const DocLogin = () => {
         </div>
     )
 }
-
-
 export default DocLogin;
