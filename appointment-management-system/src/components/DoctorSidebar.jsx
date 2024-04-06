@@ -44,12 +44,13 @@ const Sidebar = () => {
   const handleMouseDown = (e) => {
     setIsResizing(true);
     setStartX(e.clientX);
+    document.body.style.userSelect = "none";
   };
 
   const handleMouseMove = (e) => {
     if (isResizing) {
       const deltaX = e.clientX - startX;
-      const newWidth = Math.max(sidebarWidth + deltaX, 200); // Limit minimum width
+      const newWidth = Math.max(sidebarWidth + deltaX, 500); // Limit minimum width
       setSidebarWidth(newWidth);
       setStartX(e.clientX);
     }
@@ -57,6 +58,7 @@ const Sidebar = () => {
 
   const handleMouseUp = () => {
     setIsResizing(false);
+    document.body.style.userSelect = "auto";
   };
 
   return (
