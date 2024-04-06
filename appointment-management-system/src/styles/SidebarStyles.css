@@ -2,7 +2,6 @@
   position: relative;
   overflow-x: hidden;
   transition: width 0.3s;
-  /* width: 250px; Width of the sidebar */
   height: 100vh;
   top: 0;
   left: 0;

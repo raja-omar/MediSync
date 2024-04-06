@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import '../styles/Calendar.css';
-import ErrorModal from './ErrorModal';
+import React, { useState } from "react";
+import "../styles/Calendar.css";
+import ErrorModal from "./ErrorModal";
 
 let draggedPatient;
 let draggedCellId;
@@ -11,10 +11,10 @@ const Calendar = () => {
   const [cellsData, setCellsData] = useState({});
   const [showErrorModal, setShowErrorModal] = useState(false); // State to manage the visibility of the error modal
 
-  const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+  const daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 
   const handleDragStart = (event, patientData, cellId) => {
-    event.dataTransfer.setData('text/plain', '');
+    event.dataTransfer.setData("text/plain", "");
     draggedPatient = patientData;
     draggedCellId = cellId;
   };
@@ -22,7 +22,7 @@ const Calendar = () => {
   const handleDrop = (event, dayIndex, hour) => {
     event.preventDefault();
     const cellId = `${dayIndex}-${hour}`;
-    if (!event.target.classList.contains('lightred-bg')) {
+    if (!event.target.classList.contains("lightred-bg")) {
       // Remove the patient card from its previous location if it exists
       const updatedCellsData = { ...cellsData };
       Object.keys(updatedCellsData).forEach((key) => {
@@ -35,7 +35,7 @@ const Calendar = () => {
       updatedCellsData[cellId] = draggedPatient;
       setCellsData(updatedCellsData);
     } else {
-      console.log('NUH UH');
+      console.log("NUH UH");
       setShowErrorModal(true);
 
       /* 
@@ -84,7 +84,7 @@ const Calendar = () => {
       // Start at 9 AM and end at 5 PM
       timeSlots.push(
         <div key={i} className="time-slot">
-          {i < 12 ? `${i} AM` : i === 12 ? '12 PM' : `${i - 12} PM`}
+          {i < 12 ? `${i} AM` : i === 12 ? "12 PM" : `${i - 12} PM`}
         </div>
       );
     }
@@ -103,16 +103,19 @@ const Calendar = () => {
         currentDate.setDate(currentDate.getDate() + 1);
       }
 
-      const formattedDate = currentDate.toLocaleDateString('en-US', {
-        weekday: 'short',
-        month: 'short',
-        day: 'numeric',
+      const day = currentDate.getDate(); // Get the day of the month
+      const formattedDay = day < 10 ? `0${day}` : day; // Add leading zero if needed
+
+      const formattedDate = currentDate.toLocaleDateString("en-US", {
+        weekday: "short",
+        month: "short",
+        day: "numeric",
       });
 
       currentWeek.push(
         <div key={i} className="calendar-day">
           <div className="day-date">
-            <h3>{formattedDate}</h3>
+            <h3>{formattedDate.replace(day, formattedDay)}</h3>
           </div>
           {renderCells(i)}
         </div>
@@ -123,6 +126,7 @@ const Calendar = () => {
 
     return currentWeek;
   };
+
   const handleDeletePatient = (cellId) => {
     const updatedCellsData = { ...cellsData };
     delete updatedCellsData[cellId];
@@ -131,10 +135,10 @@ const Calendar = () => {
 
   const handleCellClick = (event) => {
     if (blockTimeMode) {
-      if (event.target.classList.contains('lightred-bg')) {
-        event.target.classList.remove('lightred-bg');
+      if (event.target.classList.contains("lightred-bg")) {
+        event.target.classList.remove("lightred-bg");
       } else {
-        event.target.classList.add('lightred-bg');
+        event.target.classList.add("lightred-bg");
       }
     }
   };
@@ -151,7 +155,7 @@ const Calendar = () => {
           onClick={(event) => handleCellClick(event)}
           onDrop={(event) => handleDrop(event, dayIndex, i)}
           onDragOver={handleDragOver}
-          draggable={cellsData[cellId] ? 'true' : 'false'} // Enable dragging only if cell contains patient
+          draggable={cellsData[cellId] ? "true" : "false"} // Enable dragging only if cell contains patient
           onDragStart={(event) =>
             handleDragStart(event, cellsData[cellId], cellId)
           }
@@ -187,7 +191,7 @@ const Calendar = () => {
             Next Week
           </button>
           <button onClick={handleBlockTimeToggle} id="block-btn">
-            {blockTimeMode ? 'Disable Block Time' : 'Block Time'}
+            {blockTimeMode ? "Disable Block Time" : "Block Time"}
           </button>
         </div>
         <div className="calendar-body">
@@ -198,8 +202,8 @@ const Calendar = () => {
           draggable="true"
           onDragStart={(event) =>
             handleDragStart(event, {
-              name: 'R. Omar',
-              healthCardNumber: '45353',
+              name: "R. Omar",
+              healthCardNumber: "45353",
             })
           }
           className="drag-card"
@@ -211,8 +215,8 @@ const Calendar = () => {
           draggable="true"
           onDragStart={(event) =>
             handleDragStart(event, {
-              name: 'R. Omar',
-              healthCardNumber: '45353',
+              name: "R. Omar",
+              healthCardNumber: "45353",
             })
           }
           className="drag-card"
@@ -224,8 +228,8 @@ const Calendar = () => {
           draggable="true"
           onDragStart={(event) =>
             handleDragStart(event, {
-              name: 'Smit S.',
-              healthCardNumber: '23423',
+              name: "Smit S.",
+              healthCardNumber: "23423",
             })
           }
           className="drag-card"
@@ -237,8 +241,8 @@ const Calendar = () => {
           draggable="true"
           onDragStart={(event) =>
             handleDragStart(event, {
-              name: 'John Doe',
-              healthCardNumber: '12345',
+              name: "John Doe",
+              healthCardNumber: "12345",
             })
           }
           className="drag-card"
@@ -250,8 +254,8 @@ const Calendar = () => {
           draggable="true"
           onDragStart={(event) =>
             handleDragStart(event, {
-              name: 'John Doe',
-              healthCardNumber: '12345',
+              name: "John Doe",
+              healthCardNumber: "12345",
             })
           }
           className="drag-card"
@@ -260,7 +264,7 @@ const Calendar = () => {
           <p>Health ID: 12345</p>
         </div>
       </div>
-      {showErrorModal && <ErrorModal onClose={handleCloseErrorModal} />}{' '}
+      {showErrorModal && <ErrorModal onClose={handleCloseErrorModal} />}{" "}
     </>
   );
 };

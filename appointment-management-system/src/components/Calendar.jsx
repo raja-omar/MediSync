@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import '../styles/Calendar.css';
-import ErrorModal from './ErrorModal';
+import React, { useState } from "react";
+import "../styles/Calendar.css";
+import ErrorModal from "./ErrorModal";
 
 let draggedPatient;
 let draggedCellId;
@@ -13,10 +13,10 @@ const Calendar = () => {
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
 
-  const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+  const daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 
   const handleDragStart = (event, patientData, cellId) => {
-    event.dataTransfer.setData('text/plain', '');
+    event.dataTransfer.setData("text/plain", "");
     draggedPatient = patientData;
     draggedCellId = cellId;
   };
@@ -24,7 +24,7 @@ const Calendar = () => {
   const handleDrop = (event, dayIndex, hour) => {
     event.preventDefault();
     const cellId = `${dayIndex}-${hour}`;
-    if (!event.target.classList.contains('lightred-bg')) {
+    if (!event.target.classList.contains("lightred-bg")) {
       const updatedCellsData = { ...cellsData };
       Object.keys(updatedCellsData).forEach((key) => {
         if (updatedCellsData[key] === draggedPatient) {
@@ -34,7 +34,7 @@ const Calendar = () => {
       updatedCellsData[cellId] = draggedPatient;
       setCellsData(updatedCellsData);
     } else {
-      console.log('NUH UH');
+      console.log("NUH UH");
       setShowErrorModal(true);
     }
   };
@@ -92,7 +92,7 @@ const Calendar = () => {
     for (let i = 9; i <= 17; i++) {
       timeSlots.push(
         <div key={i} className="time-slot">
-          {i < 12 ? `${i} AM` : i === 12 ? '12 PM' : `${i - 12} PM`}
+          {i < 12 ? `${i} AM` : i === 12 ? "12 PM" : `${i - 12} PM`}
         </div>
       );
     }
@@ -108,10 +108,13 @@ const Calendar = () => {
         currentDate.setDate(currentDate.getDate() + 1);
       }
 
-      const formattedDate = currentDate.toLocaleDateString('en-US', {
-        weekday: 'short',
-        month: 'short',
-        day: 'numeric',
+      const day = currentDate.getDate(); // Get the day of the month
+      // const formattedDay = day < 10 ? `0${day}` : day; // Add leading zero if needed
+
+      const formattedDate = currentDate.toLocaleDateString("en-US", {
+        weekday: "short",
+        month: "short",
+        day: "2-digit", // Use 2-digit format for day
       });
 
       currentWeek.push(
@@ -131,10 +134,10 @@ const Calendar = () => {
 
   const handleCellClick = (event) => {
     if (blockTimeMode) {
-      if (event.target.classList.contains('lightred-bg')) {
-        event.target.classList.remove('lightred-bg');
+      if (event.target.classList.contains("lightred-bg")) {
+        event.target.classList.remove("lightred-bg");
       } else {
-        event.target.classList.add('lightred-bg');
+        event.target.classList.add("lightred-bg");
       }
     }
   };
@@ -151,7 +154,7 @@ const Calendar = () => {
           onClick={(event) => handleCellClick(event)}
           onDrop={(event) => handleDrop(event, dayIndex, i)}
           onDragOver={handleDragOver}
-          draggable={cellsData[cellId] ? 'true' : 'false'}
+          draggable={cellsData[cellId] ? "true" : "false"}
           onDragStart={(event) =>
             handleDragStart(event, cellsData[cellId], cellId)
           }
@@ -187,7 +190,7 @@ const Calendar = () => {
             Next Week
           </button>
           <button onClick={handleBlockTimeToggle} className="nav-button">
-            {blockTimeMode ? 'Disable Block Time' : 'Block Time'}
+            {blockTimeMode ? "Disable Block Time" : "Block Time"}
           </button>
         </div>
         <div className="calendar-body">
@@ -198,8 +201,8 @@ const Calendar = () => {
           draggable="true"
           onDragStart={(event) =>
             handleDragStart(event, {
-              name: 'John Doe',
-              healthCardNumber: '12345',
+              name: "John Doe",
+              healthCardNumber: "12345",
             })
           }
           className="drag-card"
@@ -216,13 +219,13 @@ const Calendar = () => {
             <div className="modal-buttons">
               <button
                 onClick={handleConfirmDelete}
-                style={{ backgroundColor: 'lightgreen' }}
+                style={{ backgroundColor: "lightgreen" }}
               >
                 Confirm
               </button>
               <button
                 onClick={handleCancelDelete}
-                style={{ backgroundColor: 'lightcoral', color: 'white' }}
+                style={{ backgroundColor: "lightcoral", color: "white" }}
               >
                 Cancel
               </button>

@@ -1,6 +1,6 @@
 .calendar {
   width: 100%;
-  margin: 10px;
+  margin: 0;
 }
 
 .calendar-header {
@@ -54,6 +54,7 @@
   background-color: #f7f7f7;
   padding: 10px;
   border-bottom: 1px solid #ccc;
+  font-family: Consolas, monospace;
 }
 
 .day-date h3 {
@@ -68,7 +69,7 @@
 .time-column {
   display: flex;
   flex-direction: column;
-  margin-top: 41.5px;
+  margin-top: 43px;
 }
 
 .time-slot {

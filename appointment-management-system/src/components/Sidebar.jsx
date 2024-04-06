@@ -9,6 +9,7 @@ const Sidebar = ({ setPatientData }) => {
   const [doctorDropdownVisible, setDoctorDropdownVisible] = useState(false);
   const [isResizing, setIsResizing] = useState(false);
   const [sidebarWidth, setSidebarWidth] = useState(250); // Initial width of the sidebar
+  const [startX, setStartX] = useState(0);
 
   const togglePatientDropdown = () => {
     setPatientDropdownVisible(!patientDropdownVisible);
@@ -39,16 +40,19 @@ const Sidebar = ({ setPatientData }) => {
 
   const handleMouseDown = (e) => {
     setIsResizing(true);
+    setStartX(e.clientX);
   };
 
   const handleMouseMove = (e) => {
     if (isResizing) {
-      const newWidth = e.clientX;
+      const deltaX = e.clientX - startX;
+      const newWidth = Math.max(sidebarWidth + deltaX, 200); // Limit minimum width
       setSidebarWidth(newWidth);
+      setStartX(e.clientX);
     }
   };
 
-  const handleMouseUp = (e) => {
+  const handleMouseUp = () => {
     setIsResizing(false);
   };
 
