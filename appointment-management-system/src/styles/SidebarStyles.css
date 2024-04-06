@@ -1,5 +1,8 @@
 .sidebar {
-  width: 250px; /* Width of the sidebar */
+  position: relative;
+  overflow-x: hidden;
+  transition: width 0.3s;
+  /* width: 250px; Width of the sidebar */
   height: 100vh;
   top: 0;
   left: 0;
@@ -109,4 +112,14 @@
 
 .register-icon {
   margin-left: 5px;
+}
+
+.resize-handle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 10px; /* Adjust as needed */
+  height: 100%;
+  cursor: ew-resize;
+  background-color: #ddd;
 }
