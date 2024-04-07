@@ -19,10 +19,10 @@ const DocReg = () => {
                     <input required type="text" placeholder="phone" name="password" autoComplete="off" className='input'/>
                     <input required type="password" placeholder="password" name="password" autoComplete="off" className='input'/>
                     <button className='button'>Register</button>
-                    {/* <span>Already have an account? <Link to="/doctorLogin">Login</Link></span> */}
-                    {/**
-                 * Add more fields for registration such as address and phone number
-                 */}
+                    {/* <span>Already have an account? <Link to="/login">Login</Link></span> */}
+                    
+                 {/* Add more fields for registration such as address and phone number */}
+                
                 </form>
             </div>
            
