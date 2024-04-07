@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import "../styles/DoctorSidebarStyles.css";
-import { FaUser, FaTrash } from "react-icons/fa";
+import { FaUser, FaTrash, FaExpandAlt, FaCompressAlt } from "react-icons/fa";
 
-const Sidebar = () => {
+const Sidebar = ({ isFullScreen, setIsFullScreen }) => {
   const [notes, setNotes] = useState("");
   const [isResizing, setIsResizing] = useState(false);
   const [startX, setStartX] = useState(0);
-  const [sidebarWidth, setSidebarWidth] = useState(450); // Initial width of the sidebar
-  const [fontSize, setFontSize] = useState(16); // Initial font size
+  const [sidebarWidth, setSidebarWidth] = useState(window.innerWidth);
+  const [fontSize, setFontSize] = useState(16);
   const [patientDropdownVisible, setPatientDropdownVisible] = useState(false);
+  const [lastWidth, setLastWidth] = useState(450);
 
   const patientDetails = {
     name: "John Doe",
@@ -59,6 +60,18 @@ const Sidebar = () => {
     setNotes("");
   };
 
+  const handleFullScreen = () => {
+    if (!isFullScreen) {
+      setLastWidth(sidebarWidth);
+      setSidebarWidth(window.innerWidth);
+      console.log("it should be full screen");
+    } else {
+      setSidebarWidth(lastWidth); // Reset the width to the value stored in lastWidth
+      console.log("should not be full screen");
+    }
+    setIsFullScreen(!isFullScreen); // Toggle the isFullScreen state
+  };
+
   const handleMouseDown = (e) => {
     setIsResizing(true);
     setStartX(e.clientX);
@@ -70,6 +83,7 @@ const Sidebar = () => {
       const deltaX = e.clientX - startX;
       const newWidth = Math.max(sidebarWidth + deltaX, 500); // Limit minimum width
       setSidebarWidth(newWidth);
+      setLastWidth(sidebarWidth);
       setStartX(e.clientX);
     }
   };
@@ -91,22 +105,30 @@ const Sidebar = () => {
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
       />
-      <div className="zoom-div" style={{ fontSize: `${fontSize}px` }}>
-        Zoom:
-        <button
-          onClick={increaseFontSize}
-          style={{ fontSize: `${fontSize}px` }}
+      <div className="top-sidebar">
+        <div
+          className="zoom-div"
+          style={{ marginRight: "auto", fontSize: `${fontSize}px` }}
         >
-          +
-        </button>
-        <button
-          onClick={decreaseFontSize}
-          style={{ fontSize: `${fontSize}px` }}
-        >
-          -
-        </button>
-        <button onClick={resetFontSize} style={{ fontSize: `${fontSize}px` }}>
-          reset
+          Zoom:
+          <button
+            onClick={increaseFontSize}
+            style={{ fontSize: `${fontSize}px` }}
+          >
+            +
+          </button>
+          <button
+            onClick={decreaseFontSize}
+            style={{ fontSize: `${fontSize}px` }}
+          >
+            -
+          </button>
+          <button onClick={resetFontSize} style={{ fontSize: `${fontSize}px` }}>
+            reset
+          </button>
+        </div>
+        <button onClick={handleFullScreen} style={{ marginLeft: "auto" }}>
+          {isFullScreen ? <FaCompressAlt /> : <FaExpandAlt />}
         </button>
       </div>
 

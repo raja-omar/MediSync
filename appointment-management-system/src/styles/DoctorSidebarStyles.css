@@ -27,6 +27,7 @@
 .notes-section {
   /* flex: 1; */
   display: flex;
+  margin-top: 20px; /* Add margin at the top */
   flex-direction: column;
 }
 
@@ -34,6 +35,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
+  margin-bottom: 20px; /* Add margin at the bottom */
 }
 
 .notes-container h2 {
@@ -69,7 +71,6 @@
 
 .random-notes ul {
   list-style-type: none;
-  padding: 0;
   margin: 0;
 }
 
@@ -114,8 +115,12 @@
 }
 
 .note-item {
+  margin-bottom: 10px;
   display: flex; 
   align-items: center; 
+  padding: 2px;
+  background-color: #ddd;
+  border-radius: 5px;
 }
 
 .delete-button {
@@ -133,4 +138,9 @@
 
 .delete-button:hover {
   background-color: #c82333;
+}
+
+
+.top-sidebar {
+  display: flex;
 }
