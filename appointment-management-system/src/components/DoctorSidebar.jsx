@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../styles/DoctorSidebarStyles.css";
+import { FaUser, FaTrash } from "react-icons/fa";
 
 const Sidebar = () => {
   const [notes, setNotes] = useState("");
@@ -7,6 +8,7 @@ const Sidebar = () => {
   const [startX, setStartX] = useState(0);
   const [sidebarWidth, setSidebarWidth] = useState(450); // Initial width of the sidebar
   const [fontSize, setFontSize] = useState(16); // Initial font size
+  const [patientDropdownVisible, setPatientDropdownVisible] = useState(false);
 
   const patientDetails = {
     name: "John Doe",
@@ -33,6 +35,10 @@ const Sidebar = () => {
     },
   ];
 
+  const togglePatientDropdown = () => {
+    setPatientDropdownVisible(!patientDropdownVisible);
+  };
+
   const increaseFontSize = () => {
     setFontSize((prevFontSize) => Math.min(prevFontSize + 1, 30));
   };
@@ -41,7 +47,7 @@ const Sidebar = () => {
     setFontSize((prevFontSize) => Math.max(prevFontSize - 1, 10)); // Limit minimum font size
   };
   const resetFontSize = () => {
-    setFontSize((prevFontSize) => 16); // Limit minimum font size
+    setFontSize(16); // Limit minimum font size
   };
 
   const handleNotesChange = (e) => {
@@ -105,41 +111,49 @@ const Sidebar = () => {
       </div>
 
       <div className="patient-info">
-        <h2
-          className="patient-info-h2"
+        <button
+          className="dropbtn"
+          onClick={togglePatientDropdown}
           style={{ fontSize: `${fontSize * 1.5}px` }}
         >
+          <FaUser />
           Patient Information
-        </h2>
-        <p>
-          <strong>Name:</strong> {patientDetails.name}
-        </p>
-        <p>
-          <strong>Age:</strong> {patientDetails.age}
-        </p>
-        <p>
-          <strong>Gender:</strong> {patientDetails.gender}
-        </p>
-        <p>
-          <strong>Address:</strong> {patientDetails.address}
-        </p>
-        <p>
-          <strong>Contact:</strong> {patientDetails.contact}
-        </p>
-        <p>
-          <strong>Chronic Illnesses:</strong>{" "}
-          {patientDetails.chronicIllnesses.join(", ")}
-        </p>
-        <p>
-          <strong>Allergies:</strong> {patientDetails.allergies.join(", ")}
-        </p>
-        <p>
-          <strong>Medications:</strong> {patientDetails.medications.join(", ")}
-        </p>
-        <p>
-          <strong>Reason for Appointment:</strong>{" "}
-          {patientDetails.reasonForAppointment}
-        </p>
+        </button>
+        <div
+          className={`dropdown-content ${patientDropdownVisible ? "open" : ""}`}
+          style={{ fontSize: `${fontSize}px` }}
+        >
+          <p>
+            <strong>Name:</strong> {patientDetails.name}
+          </p>
+          <p>
+            <strong>Age:</strong> {patientDetails.age}
+          </p>
+          <p>
+            <strong>Gender:</strong> {patientDetails.gender}
+          </p>
+          <p>
+            <strong>Address:</strong> {patientDetails.address}
+          </p>
+          <p>
+            <strong>Contact:</strong> {patientDetails.contact}
+          </p>
+          <p>
+            <strong>Chronic Illnesses:</strong>{" "}
+            {patientDetails.chronicIllnesses.join(", ")}
+          </p>
+          <p>
+            <strong>Allergies:</strong> {patientDetails.allergies.join(", ")}
+          </p>
+          <p>
+            <strong>Medications:</strong>{" "}
+            {patientDetails.medications.join(", ")}
+          </p>
+          <p>
+            <strong>Reason for Appointment:</strong>{" "}
+            {patientDetails.reasonForAppointment}
+          </p>
+        </div>
       </div>
 
       <div className="notes-section">
@@ -154,15 +168,23 @@ const Sidebar = () => {
         </div>
 
         <div className="random-notes">
-          <h3 style={{ fontSize: `${fontSize * 1.25}px` }}>Random Notes</h3>
+          <h3 style={{ fontSize: `${fontSize * 1.25}px` }}>Patient Notes</h3>
           <ul>
             {randomNotes.map((note, index) => (
-              <li key={index}>
-                <p>{note.text}</p>
-                <p>
-                  Date: {note.date}, Time: {note.time}
-                </p>
-              </li>
+              <div key={index} className="note-item">
+                <li key={index}>
+                  <p>{note.text}</p>
+                  <p>
+                    Date: {note.date}, Time: {note.time}
+                  </p>
+                </li>
+                <button
+                  className="delete-button"
+                  // onClick={() => handleDelete(index)}
+                >
+                  <FaTrash /> Delete
+                </button>
+              </div>
             ))}
           </ul>
         </div>

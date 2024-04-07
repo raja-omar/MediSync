@@ -8,7 +8,7 @@ let deleteCellId;
 
 const Calendar = () => {
   const [currentWeekStart, setCurrentWeekStart] = useState(new Date());
-  const [blockTimeMode, setBlockTimeMode] = useState(false);
+  // const [blockTimeMode, setBlockTimeMode] = useState(false);
   const [cellsData, setCellsData] = useState({});
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
@@ -83,9 +83,9 @@ const Calendar = () => {
     setCurrentWeekStart(getPreviousWeekStart());
   };
 
-  const handleBlockTimeToggle = () => {
-    setBlockTimeMode(!blockTimeMode);
-  };
+  // const handleBlockTimeToggle = () => {
+  //   setBlockTimeMode(!blockTimeMode);
+  // };
 
   const renderTimeColumn = () => {
     const timeSlots = [];
@@ -132,15 +132,15 @@ const Calendar = () => {
     return currentWeek;
   };
 
-  const handleCellClick = (event) => {
-    if (blockTimeMode) {
-      if (event.target.classList.contains("lightred-bg")) {
-        event.target.classList.remove("lightred-bg");
-      } else {
-        event.target.classList.add("lightred-bg");
-      }
-    }
-  };
+  // const handleCellClick = (event) => {
+  //   if (blockTimeMode) {
+  //     if (event.target.classList.contains("lightred-bg")) {
+  //       event.target.classList.remove("lightred-bg");
+  //     } else {
+  //       event.target.classList.add("lightred-bg");
+  //     }
+  //   }
+  // };
 
   const renderCells = (dayIndex) => {
     const cells = [];
@@ -186,12 +186,15 @@ const Calendar = () => {
           <button onClick={goToPreviousWeek} className="nav-button">
             Previous Week
           </button>
+          <div className="current_doc">
+            Currently seeing Dr. SDMN's Calendar
+          </div>
           <button onClick={goToNextWeek} className="nav-button">
             Next Week
           </button>
-          <button onClick={handleBlockTimeToggle} className="nav-button">
+          {/* <button onClick={handleBlockTimeToggle} className="nav-button">
             {blockTimeMode ? "Disable Block Time" : "Block Time"}
-          </button>
+          </button> */}
         </div>
         <div className="calendar-body">
           {renderTimeColumn()}

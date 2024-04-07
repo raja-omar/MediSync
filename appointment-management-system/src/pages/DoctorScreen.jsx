@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
-import DoctorSidebar from '../components/DoctorSidebar';
-import MainSection from '../components/MainSection';
-import '../styles/App.css';
+import React, { useState } from "react";
+import DoctorSidebar from "../components/DoctorSidebar";
+// import MainSection from '../components/MainSection';
+import DocCalendar from "../components/DoctorCalendar";
+
+import "../styles/App.css";
 
 function App() {
   const [patientData, setPatientData] = useState(null);
@@ -9,7 +11,7 @@ function App() {
   return (
     <div className="app-container">
       <DoctorSidebar className="sdebar" setPatientData={setPatientData} />
-      <MainSection className="main-section" patientData={patientData} />
+      <DocCalendar className="main-section" patientData={patientData} />
     </div>
   );
 }

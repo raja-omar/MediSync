@@ -21,7 +21,7 @@ const Sidebar = ({ setPatientData }) => {
   };
 
   const resetFontSize = () => {
-    setFontSize((prevFontSize) => 16); // Limit minimum font size
+    setFontSize(16); // Limit minimum font size
   };
 
   const togglePatientDropdown = () => {
