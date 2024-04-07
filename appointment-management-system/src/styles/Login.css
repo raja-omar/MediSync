@@ -1,0 +1,75 @@
+.doctor-login-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 5px solid black;
+    padding: 20px;
+    min-height: 1000px;
+    justify-content: center;
+    justify-content: space-evenly;
+    background-color: rgb(27, 27, 27);
+    background-image: url('../imgs/background.jpg');
+
+    .container{
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 30px;
+        min-width: 190px;
+        .header{
+            font-size: xx-large;
+            padding: 20px;
+        }
+        .form{
+            display: flex;
+            flex-direction: column;
+            padding: 5px;
+        }
+        .input{
+            /* padding: 10px; */
+            /* border-bottom-width: 3px; */
+        }
+        .button{
+            size: 10px;
+        }
+    }
+}
+
+.doctor-register-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-width: 5px; 
+    padding: 10px;
+    border: 5px solid black;
+    justify-content: center;
+    min-height: 1000px;
+    justify-content: space-evenly;
+    background-color: rgb(27, 27, 27);
+    background-image: url('../imgs/background.jpg');
+
+    .container{
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 40px;
+        .header{
+            font-size: xx-large;
+            padding: 20px;
+        }
+        .form{
+            display: flex;
+            flex-direction: column;
+            padding: 5px;
+        }
+        .button{
+            size: 10px;
+        }
+    
+    }
+    
+}
