@@ -6,6 +6,7 @@ const Sidebar = () => {
   const [isResizing, setIsResizing] = useState(false);
   const [startX, setStartX] = useState(0);
   const [sidebarWidth, setSidebarWidth] = useState(450); // Initial width of the sidebar
+  const [fontSize, setFontSize] = useState(16); // Initial font size
 
   const patientDetails = {
     name: "John Doe",
@@ -31,6 +32,17 @@ const Sidebar = () => {
       time: "02:15 PM",
     },
   ];
+
+  const increaseFontSize = () => {
+    setFontSize((prevFontSize) => Math.min(prevFontSize + 1, 30));
+  };
+
+  const decreaseFontSize = () => {
+    setFontSize((prevFontSize) => Math.max(prevFontSize - 1, 10)); // Limit minimum font size
+  };
+  const resetFontSize = () => {
+    setFontSize((prevFontSize) => 16); // Limit minimum font size
+  };
 
   const handleNotesChange = (e) => {
     setNotes(e.target.value);
@@ -64,7 +76,7 @@ const Sidebar = () => {
   return (
     <div
       className="sidebar"
-      style={{ width: sidebarWidth }}
+      style={{ width: sidebarWidth, fontSize: `${fontSize}px` }}
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
     >
@@ -73,8 +85,32 @@ const Sidebar = () => {
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
       />
+      <div className="zoom-div" style={{ fontSize: `${fontSize}px` }}>
+        Zoom:
+        <button
+          onClick={increaseFontSize}
+          style={{ fontSize: `${fontSize}px` }}
+        >
+          +
+        </button>
+        <button
+          onClick={decreaseFontSize}
+          style={{ fontSize: `${fontSize}px` }}
+        >
+          -
+        </button>
+        <button onClick={resetFontSize} style={{ fontSize: `${fontSize}px` }}>
+          reset
+        </button>
+      </div>
+
       <div className="patient-info">
-        <h2>Patient Information</h2>
+        <h2
+          className="patient-info-h2"
+          style={{ fontSize: `${fontSize * 1.5}px` }}
+        >
+          Patient Information
+        </h2>
         <p>
           <strong>Name:</strong> {patientDetails.name}
         </p>
@@ -105,9 +141,10 @@ const Sidebar = () => {
           {patientDetails.reasonForAppointment}
         </p>
       </div>
+
       <div className="notes-section">
         <div className="notes-container">
-          <h2>Notes</h2>
+          <h2 style={{ fontSize: `${fontSize * 1.5}px` }}>Notes</h2>
           <textarea
             value={notes}
             onChange={handleNotesChange}
@@ -117,7 +154,7 @@ const Sidebar = () => {
         </div>
 
         <div className="random-notes">
-          <h3>Random Notes</h3>
+          <h3 style={{ fontSize: `${fontSize * 1.25}px` }}>Random Notes</h3>
           <ul>
             {randomNotes.map((note, index) => (
               <li key={index}>

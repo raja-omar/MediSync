@@ -10,6 +10,19 @@ const Sidebar = ({ setPatientData }) => {
   const [isResizing, setIsResizing] = useState(false);
   const [sidebarWidth, setSidebarWidth] = useState(250); // Initial width of the sidebar
   const [startX, setStartX] = useState(0);
+  const [fontSize, setFontSize] = useState(16); // Initial font size
+
+  const increaseFontSize = () => {
+    setFontSize((prevFontSize) => Math.min(prevFontSize + 1, 30));
+  };
+
+  const decreaseFontSize = () => {
+    setFontSize((prevFontSize) => Math.max(prevFontSize - 1, 10)); // Limit minimum font size
+  };
+
+  const resetFontSize = () => {
+    setFontSize((prevFontSize) => 16); // Limit minimum font size
+  };
 
   const togglePatientDropdown = () => {
     setPatientDropdownVisible(!patientDropdownVisible);
@@ -66,17 +79,40 @@ const Sidebar = ({ setPatientData }) => {
       onMouseUp={handleMouseUp}
     >
       <div className="resize-handle" onMouseDown={handleMouseDown} />
-
+      <div className="zoom-div" style={{ fontSize: `${fontSize}px` }}>
+        Zoom:
+        <button
+          onClick={increaseFontSize}
+          style={{ fontSize: `${fontSize}px` }}
+        >
+          +
+        </button>
+        <button
+          onClick={decreaseFontSize}
+          style={{ fontSize: `${fontSize}px` }}
+        >
+          -
+        </button>
+        <button onClick={resetFontSize} style={{ fontSize: `${fontSize}px` }}>
+          reset
+        </button>
+      </div>
       <div className="dropdown">
-        <button className="dropbtn" onClick={togglePatientDropdown}>
+        <button
+          className="dropbtn"
+          onClick={togglePatientDropdown}
+          style={{ fontSize: `${fontSize}px` }}
+        >
           <FaUser /> Patient
         </button>
         <div
           className={`dropdown-content ${patientDropdownVisible ? "open" : ""}`}
+          style={{ fontSize: `${fontSize}px` }}
         >
           <button
             className="dropdown-item register-patient"
             onClick={openDialog}
+            style={{ fontSize: `${fontSize}px` }}
           >
             Register new patient <FaUserPlus className="register-icon" />
           </button>
@@ -85,23 +121,72 @@ const Sidebar = ({ setPatientData }) => {
               type="text"
               placeholder="Search existing patient  &#x1F50D; "
               className="search-input"
+              style={{ fontSize: `${fontSize}px` }}
             />
           </div>
         </div>
       </div>
       <div className="dropdown">
-        <button className="dropbtn" onClick={toggleDoctorDropdown}>
+        <button
+          className="dropbtn"
+          onClick={toggleDoctorDropdown}
+          style={{ fontSize: `${fontSize}px` }}
+        >
           <FaUserMd /> Doctor
         </button>
         <div
           className={`dropdown-content ${doctorDropdownVisible ? "open" : ""}`}
+          style={{ fontSize: `${fontSize}px` }}
         >
-          <div className="search-container">
-            <FaSearch className="search-icon" />
+          <div
+            className="search-container"
+            style={{ fontSize: `${fontSize}px` }}
+          >
+            <FaSearch
+              className="search-icon"
+              style={{ fontSize: `${fontSize}px` }}
+            />
             <input
               type="text"
               placeholder="Search doctor"
               className="search-input"
+              style={{ fontSize: `${fontSize}px` }}
+            />
+          </div>
+          <div className="search-container">
+            <FaSearch
+              className="search-icon"
+              style={{ fontSize: `${fontSize}px` }}
+            />
+            <input
+              type="text"
+              placeholder="Search Department"
+              className="search-input"
+              style={{ fontSize: `${fontSize}px` }}
+            />
+          </div>
+          <div className="search-container">
+            <FaSearch
+              className="search-icon"
+              style={{ fontSize: `${fontSize}px` }}
+            />
+            <input
+              type="text"
+              placeholder="Enter start time"
+              className="search-input"
+              style={{ fontSize: `${fontSize}px` }}
+            />
+          </div>
+          <div className="search-container">
+            <FaSearch
+              className="search-icon"
+              style={{ fontSize: `${fontSize}px` }}
+            />
+            <input
+              type="text"
+              placeholder="Enter finish time"
+              className="search-input"
+              style={{ fontSize: `${fontSize}px` }}
             />
           </div>
         </div>

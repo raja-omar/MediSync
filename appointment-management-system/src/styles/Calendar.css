@@ -70,9 +70,12 @@
   display: flex;
   flex-direction: column;
   margin-top: 43px;
+  font-family: Consolas, monospace;
+  width: 75px;
 }
 
 .time-slot {
+  background-color: #f7f7f7;
   height: 50px;
   display: flex;
   align-items: center;

@@ -24,7 +24,7 @@
   background-color: #444;
   color: white;
   padding: 10px;
-  font-size: 16px;
+  /* font-size: 16px; */
   border: none;
   cursor: pointer;
   display: flex;
@@ -85,7 +85,7 @@
   border: none;
   padding: 8px;
   border-radius: 3px;
-  width: 155px;
+  /* width: 155px; */
 }
 
 .search-input::placeholder {
