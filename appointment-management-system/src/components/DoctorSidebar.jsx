@@ -40,6 +40,16 @@ const Sidebar = ({ isFullScreen, setIsFullScreen }) => {
       date: "2024-03-06",
       time: "02:15 PM",
     },
+    {
+      text: "Patient needs to schedule a follow-up appointment in 2 weeks.",
+      date: "2024-03-07",
+      time: "10:30 AM",
+    },
+    {
+      text: "Patient needs to schedule a follow-up appointment in 2 weeks.",
+      date: "2024-03-07",
+      time: "10:30 AM",
+    },
   ];
 
   const togglePatientDropdown = () => {
@@ -106,119 +116,135 @@ const Sidebar = ({ isFullScreen, setIsFullScreen }) => {
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
     >
-      <div
-        className="resize-handle"
-        onMouseDown={handleMouseDown}
-        onMouseUp={handleMouseUp}
-      />
-      <div className="top-sidebar">
+      <div className="sidepanel-content">
         <div
-          className="zoom-div"
-          style={{ marginRight: "auto", fontSize: `${fontSize}px` }}
-        >
-          Zoom:
-          <button
-            onClick={increaseFontSize}
-            style={{ fontSize: `${fontSize}px` }}
+          className="resize-handle"
+          onMouseDown={handleMouseDown}
+          onMouseUp={handleMouseUp}
+        />
+        <div className="top-sidebar">
+          <div
+            className="zoom-div"
+            style={{ marginRight: "auto", fontSize: `${fontSize}px` }}
           >
-            +
-          </button>
-          <button
-            onClick={decreaseFontSize}
-            style={{ fontSize: `${fontSize}px` }}
-          >
-            -
-          </button>
-          <button onClick={resetFontSize} style={{ fontSize: `${fontSize}px` }}>
-            reset
-          </button>
-        </div>
-        <button onClick={handleFullScreen} style={{ marginLeft: "auto" }}>
-          {isFullScreen ? <FaCompressAlt /> : <FaExpandAlt />}
-        </button>
-      </div>
-
-      <div className="patient-info">
-        <button
-          className="dropbtn"
-          onClick={togglePatientDropdown}
-          style={{ fontSize: `${fontSize * 1.5}px` }}
-        >
-          <FaUser />
-          Patient Information
-          <div style={{ marginLeft: "auto" }}>
-            <FaChevronDown />
+            Zoom:
+            <button
+              onClick={increaseFontSize}
+              style={{ fontSize: `${fontSize}px` }}
+            >
+              +
+            </button>
+            <button
+              onClick={decreaseFontSize}
+              style={{ fontSize: `${fontSize}px` }}
+            >
+              -
+            </button>
+            <button
+              onClick={resetFontSize}
+              style={{ fontSize: `${fontSize}px` }}
+            >
+              reset
+            </button>
           </div>
-        </button>
-        <div
-          className={`dropdown-content ${patientDropdownVisible ? "open" : ""}`}
-          style={{ fontSize: `${fontSize}px` }}
-        >
-          <p>
-            <strong>Name:</strong> {patientDetails.name}
-          </p>
-          <p>
-            <strong>Age:</strong> {patientDetails.age}
-          </p>
-          <p>
-            <strong>Gender:</strong> {patientDetails.gender}
-          </p>
-          <p>
-            <strong>Address:</strong> {patientDetails.address}
-          </p>
-          <p>
-            <strong>Contact:</strong> {patientDetails.contact}
-          </p>
-          <p>
-            <strong>Chronic Illnesses:</strong>{" "}
-            {patientDetails.chronicIllnesses.join(", ")}
-          </p>
-          <p>
-            <strong>Allergies:</strong> {patientDetails.allergies.join(", ")}
-          </p>
-          <p>
-            <strong>Medications:</strong>{" "}
-            {patientDetails.medications.join(", ")}
-          </p>
-          <p>
-            <strong>Reason for Appointment:</strong>{" "}
-            {patientDetails.reasonForAppointment}
-          </p>
+          <div
+            className="zoom-div"
+            style={{
+              fontSize: `${fontSize}px`,
+            }}
+          >
+            <button onClick={handleFullScreen} style={{ marginLeft: "auto" }}>
+              {isFullScreen ? <FaCompressAlt /> : <FaExpandAlt />}
+            </button>
+          </div>
+        </div>
+
+        <div className="patient-info">
+          <button
+            className="dropbtn"
+            onClick={togglePatientDropdown}
+            style={{ fontSize: `${fontSize * 1.5}px` }}
+          >
+            <FaUser />
+            Patient Information
+            <div style={{ marginLeft: "auto" }}>
+              <FaChevronDown />
+            </div>
+          </button>
+          <div
+            className={`dropdown-content ${
+              patientDropdownVisible ? "open" : ""
+            }`}
+            style={{ fontSize: `${fontSize}px` }}
+          >
+            <p>
+              <strong>Name:</strong> {patientDetails.name}
+            </p>
+            <p>
+              <strong>Age:</strong> {patientDetails.age}
+            </p>
+            <p>
+              <strong>Gender:</strong> {patientDetails.gender}
+            </p>
+            <p>
+              <strong>Address:</strong> {patientDetails.address}
+            </p>
+            <p>
+              <strong>Contact:</strong> {patientDetails.contact}
+            </p>
+            <p>
+              <strong>Chronic Illnesses:</strong>{" "}
+              {patientDetails.chronicIllnesses.join(", ")}
+            </p>
+            <p>
+              <strong>Allergies:</strong> {patientDetails.allergies.join(", ")}
+            </p>
+            <p>
+              <strong>Medications:</strong>{" "}
+              {patientDetails.medications.join(", ")}
+            </p>
+            <p>
+              <strong>Reason for Appointment:</strong>{" "}
+              {patientDetails.reasonForAppointment}
+            </p>
+          </div>
+        </div>
+
+        <div className="notes-section">
+          <div className="notes-container">
+            <h2 style={{ fontSize: `${fontSize * 1.5}px` }}>Notes</h2>
+            <textarea
+              value={notes}
+              onChange={handleNotesChange}
+              placeholder="Type notes here..."
+            />
+            <button onClick={submitNotes}>Submit</button>
+          </div>
+
+          <div className="random-notes">
+            <h3 style={{ fontSize: `${fontSize * 1.25}px` }}>Patient Notes</h3>
+            <ul>
+              {randomNotes.map((note, index) => (
+                <div key={index} className="note-item">
+                  <li key={index}>
+                    <p>{note.text}</p>
+                    <p>
+                      Date: {note.date}, Time: {note.time}
+                    </p>
+                  </li>
+                  <button className="delete-button">
+                    <FaTrash /> Delete
+                  </button>
+                </div>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
-
-      <div className="notes-section">
-        <div className="notes-container">
-          <h2 style={{ fontSize: `${fontSize * 1.5}px` }}>Notes</h2>
-          <textarea
-            value={notes}
-            onChange={handleNotesChange}
-            placeholder="Type notes here..."
-          />
-          <button onClick={submitNotes}>Submit</button>
-        </div>
-
-        <div className="random-notes">
-          <h3 style={{ fontSize: `${fontSize * 1.25}px` }}>Patient Notes</h3>
-          <ul>
-            {randomNotes.map((note, index) => (
-              <div key={index} className="note-item">
-                <li key={index}>
-                  <p>{note.text}</p>
-                  <p>
-                    Date: {note.date}, Time: {note.time}
-                  </p>
-                </li>
-                <button
-                  className="delete-button"
-                  // onClick={() => handleDelete(index)}
-                >
-                  <FaTrash /> Delete
-                </button>
-              </div>
-            ))}
-          </ul>
-        </div>
+      <div>
+        <h2>Logged in as Saadman</h2>
+        <h3>Employee Number: 1234</h3>
+        <button>sign out</button>
       </div>
     </div>
   );

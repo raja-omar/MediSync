@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import '../styles/PatientRegistrationFormStyles.css';
+import "../styles/PatientRegistrationFormStyles.css";
 
 const PatientRegistrationForm = ({ onClose, onSubmit }) => {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    healthCardNumber: '',
-    address: '',
-    age: '',
+    firstName: "",
+    lastName: "",
+    healthCardNumber: "",
+    address: "",
+    age: "",
   });
 
   const handleChange = (e) => {
@@ -73,17 +73,17 @@ const PatientRegistrationForm = ({ onClose, onSubmit }) => {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="age">Age:</label>
+            <label htmlFor="dob">Date Of Birth:</label>
             <input
-              type="number"
-              id="age"
-              name="age"
+              type="date"
+              id="dob"
+              name="dob"
               value={formData.age}
               onChange={handleChange}
               required
             />
           </div>
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
             <button type="submit" className="submit-btn">
               Submit
             </button>

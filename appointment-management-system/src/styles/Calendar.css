@@ -97,6 +97,8 @@
 .patient-card {
   background-color: #65efa7;
   border: 1px solid #ccc;
+  color: #212529;
+
   padding: 5px;
   position: absolute;
   top: 0;
