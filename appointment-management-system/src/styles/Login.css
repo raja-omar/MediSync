@@ -21,7 +21,7 @@
         .header{
             font-size: xx-large;
             font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif ;
-            padding: 20px;
+            padding-top: 20px;
         }
         .form{
             display: flex;
@@ -61,7 +61,7 @@
         border-radius: 40px;
         .header{
             font-size: xx-large;
-            padding: 20px;
+            padding-top: 20px;
         }
         .form{
             display: flex;
