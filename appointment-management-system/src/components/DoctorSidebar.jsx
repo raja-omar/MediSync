@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import "../styles/DoctorSidebarStyles.css";
-import { FaUser, FaTrash, FaExpandAlt, FaCompressAlt } from "react-icons/fa";
+import {
+  FaUser,
+  FaTrash,
+  FaExpandAlt,
+  FaCompressAlt,
+  FaChevronDown,
+} from "react-icons/fa";
 
 const Sidebar = ({ isFullScreen, setIsFullScreen }) => {
   const [notes, setNotes] = useState("");
@@ -140,6 +146,9 @@ const Sidebar = ({ isFullScreen, setIsFullScreen }) => {
         >
           <FaUser />
           Patient Information
+          <div style={{ marginLeft: "auto" }}>
+            <FaChevronDown />
+          </div>
         </button>
         <div
           className={`dropdown-content ${patientDropdownVisible ? "open" : ""}`}

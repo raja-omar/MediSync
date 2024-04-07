@@ -20,6 +20,11 @@
   margin-top: 20px;
 }
 
+.dropdown h3 {
+  color: #ddd;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 .dropbtn {
   background-color: #444;
   color: white;

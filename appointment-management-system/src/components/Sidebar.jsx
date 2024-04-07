@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { FaUser, FaUserMd, FaSearch, FaUserPlus } from "react-icons/fa";
+import {
+  FaUser,
+  FaUserMd,
+  FaSearch,
+  FaUserPlus,
+  FaChevronDown,
+} from "react-icons/fa";
 import PatientRegistrationDialog from "./PatientRegistrationForm";
 import "../styles/SidebarStyles.css";
 
@@ -104,6 +110,9 @@ const Sidebar = ({ setPatientData }) => {
           style={{ fontSize: `${fontSize}px` }}
         >
           <FaUser /> Patient
+          <div style={{ marginLeft: "auto" }}>
+            <FaChevronDown />
+          </div>
         </button>
         <div
           className={`dropdown-content ${patientDropdownVisible ? "open" : ""}`}
@@ -116,10 +125,59 @@ const Sidebar = ({ setPatientData }) => {
           >
             Register new patient <FaUserPlus className="register-icon" />
           </button>
+          <br></br>
+          <h3>Patient Search</h3>
           <div className="search-container">
             <input
               type="text"
               placeholder="Search existing patient  &#x1F50D; "
+              className="search-input"
+              style={{ fontSize: `${fontSize}px` }}
+            />
+          </div>
+          <br></br>
+          <h3>Additional Filters</h3>
+          <div
+            className="search-container"
+            style={{ fontSize: `${fontSize}px` }}
+          >
+            <FaSearch
+              className="search-icon"
+              style={{ fontSize: `${fontSize}px` }}
+            />
+            <input
+              type="text"
+              placeholder="Phone number"
+              className="search-input"
+              style={{ fontSize: `${fontSize}px` }}
+            />
+          </div>
+          <div
+            className="search-container"
+            style={{ fontSize: `${fontSize}px` }}
+          >
+            <FaSearch
+              className="search-icon"
+              style={{ fontSize: `${fontSize}px` }}
+            />
+            <input
+              type="text"
+              placeholder="Patient Health ID"
+              className="search-input"
+              style={{ fontSize: `${fontSize}px` }}
+            />
+          </div>
+          <div
+            className="search-container"
+            style={{ fontSize: `${fontSize}px` }}
+          >
+            <FaSearch
+              className="search-icon"
+              style={{ fontSize: `${fontSize}px` }}
+            />
+            <input
+              type="text"
+              placeholder="Patient Address"
               className="search-input"
               style={{ fontSize: `${fontSize}px` }}
             />
@@ -133,6 +191,9 @@ const Sidebar = ({ setPatientData }) => {
           style={{ fontSize: `${fontSize}px` }}
         >
           <FaUserMd /> Doctor
+          <div style={{ marginLeft: "auto" }}>
+            <FaChevronDown />
+          </div>
         </button>
         <div
           className={`dropdown-content ${doctorDropdownVisible ? "open" : ""}`}

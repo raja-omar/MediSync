@@ -183,15 +183,29 @@ const Calendar = () => {
   return (
     <>
       <div className="calendar">
+        <div className="log">
+          <p className="log-in-as">Loged in as DR. SAADMAN</p>
+        </div>
         <div className="calendar-header">
           <button onClick={goToPreviousWeek} className="nav-button">
             Previous Week
           </button>
+          <div className="toggle-block-time">
+            <label>{blockTimeMode ? "Disable Block Time" : "Block Time"}</label>
+            <label className="switch">
+              <input
+                type="checkbox"
+                id="read"
+                name="read"
+                checked={blockTimeMode}
+                onChange={handleBlockTimeToggle}
+              />
+              <span className="slider"></span>
+            </label>
+          </div>
+
           <button onClick={goToNextWeek} className="nav-button">
             Next Week
-          </button>
-          <button onClick={handleBlockTimeToggle} id="block-btn">
-            {blockTimeMode ? "Disable Block Time" : "Block Time"}
           </button>
         </div>
         <div className="calendar-body">
