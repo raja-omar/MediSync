@@ -6,9 +6,10 @@ const PatientRegistrationForm = ({ onClose, onSubmit }) => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
+    phonenumber: "",
     healthCardNumber: "",
     address: "",
-    age: "",
+    dob: "",
   });
 
   const handleChange = (e) => {
@@ -51,6 +52,18 @@ const PatientRegistrationForm = ({ onClose, onSubmit }) => {
             />
           </div>
           <div className="form-group">
+            <label htmlFor="phonenumber">Phone Number:</label>
+            <input
+              type="text"
+              id="phonenumber"
+              name="phonenumber"
+              value={formData.phonenumber}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className="form-group">
             <label htmlFor="healthCardNumber">Health Card Number:</label>
             <input
               type="text"
@@ -78,7 +91,7 @@ const PatientRegistrationForm = ({ onClose, onSubmit }) => {
               type="date"
               id="dob"
               name="dob"
-              value={formData.age}
+              value={formData.dob}
               onChange={handleChange}
               required
             />
