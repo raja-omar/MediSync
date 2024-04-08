@@ -8,7 +8,12 @@ let draggedPatient;
 let draggedCellId;
 let deleteCellId;
 
-const Calendar = ({ patientData, setPatientData }) => {
+const Calendar = ({
+  patientData,
+  setPatientData,
+  nameOfCalendar,
+  setNameOfCalendar,
+}) => {
   const [currentWeekStart, setCurrentWeekStart] = useState(new Date());
   // const [blockTimeMode, setBlockTimeMode] = useState(false);
   const [cellsData, setCellsData] = useState({});
@@ -176,6 +181,7 @@ const Calendar = ({ patientData, setPatientData }) => {
         className="sdebar"
         setPatientData={setPatientData}
         handleDragStart={handleDragStart}
+        setNameOfCalendar={setNameOfCalendar}
       />
       <div className="calendar">
         <div className="calendar-header">
@@ -183,7 +189,7 @@ const Calendar = ({ patientData, setPatientData }) => {
             Previous Week
           </button>
           <div className="current_doc">
-            Currently seeing Dr. SDMN's Calendar
+            Currently seeing {nameOfCalendar}'s' Calendar
           </div>
           <button onClick={goToNextWeek} className="nav-button">
             Next Week

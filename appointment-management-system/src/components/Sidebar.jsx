@@ -10,7 +10,7 @@ import PatientRegistrationDialog from "./PatientRegistrationForm";
 import "../styles/SidebarStyles.css";
 
 // eslint-disable-next-line react/prop-types
-const Sidebar = ({ setPatientData, handleDragStart }) => {
+const Sidebar = ({ setPatientData, handleDragStart, setNameOfCalendar }) => {
   const [showDialog, setShowDialog] = useState(false);
   const [patientDropdownVisible, setPatientDropdownVisible] = useState(false);
   const [doctorDropdownVisible, setDoctorDropdownVisible] = useState(false);
@@ -18,14 +18,20 @@ const Sidebar = ({ setPatientData, handleDragStart }) => {
   const [sidebarWidth, setSidebarWidth] = useState(400);
   const [startX, setStartX] = useState(0);
   const [fontSize, setFontSize] = useState(16);
-  const [searchQuery, setSearchQuery] = useState({
+  const [patientSearchQuery, setPatientSearchQuery] = useState({
     name: "",
     phonenumber: "",
     healthCardNumber: "",
     address: "",
     dob: "",
   });
-  const [searchResults, setSearchResults] = useState([]);
+  const [doctorSearchQuery, setDoctorSearchQuery] = useState({
+    name: "",
+    department: "",
+  });
+
+  const [patientSearchResults, setPatientSearchResults] = useState([]);
+  const [doctorSearchResults, setDoctorSearchResults] = useState([]);
 
   const patients = useMemo(
     () => [
@@ -56,6 +62,28 @@ const Sidebar = ({ setPatientData, handleDragStart }) => {
         healthCardNumber: "9999",
         address: "Kashmir",
         dob: "2002-12-08",
+      },
+    ],
+    []
+  );
+
+  const doctors = useMemo(
+    () => [
+      {
+        name: "Saadman Rahman",
+        department: "ortho",
+      },
+      {
+        name: "Saadman Justin",
+        department: "eye",
+      },
+      {
+        name: "Smit Saraiya",
+        department: "leg",
+      },
+      {
+        name: "Omar Saraiya",
+        department: "nose",
       },
     ],
     []
@@ -125,37 +153,68 @@ const Sidebar = ({ setPatientData, handleDragStart }) => {
   useEffect(() => {
     let filteredPatients = [];
     if (
-      searchQuery.name ||
-      searchQuery.phonenumber ||
-      searchQuery.healthCardNumber ||
-      searchQuery.address
+      patientSearchQuery.name ||
+      patientSearchQuery.phonenumber ||
+      patientSearchQuery.healthCardNumber ||
+      patientSearchQuery.address
     ) {
       filteredPatients = patients
         .filter((patient) => {
           return (
             patient.name
               .toLowerCase()
-              .includes(searchQuery.name.toLowerCase()) &&
-            patient.phonenumber.includes(searchQuery.phonenumber) &&
-            patient.healthCardNumber.includes(searchQuery.healthCardNumber) &&
+              .includes(patientSearchQuery.name.toLowerCase()) &&
+            patient.phonenumber.includes(patientSearchQuery.phonenumber) &&
+            patient.healthCardNumber.includes(
+              patientSearchQuery.healthCardNumber
+            ) &&
             patient.address
               .toLowerCase()
-              .includes(searchQuery.address.toLowerCase())
+              .includes(patientSearchQuery.address.toLowerCase())
           );
         })
         .slice(0, 3); // Limit to the first 3 search results
     }
-    setSearchResults(filteredPatients);
-  }, [searchQuery, patients]);
+    setPatientSearchResults(filteredPatients);
+  }, [patientSearchResults, patients]);
 
-  const handleSearchChange = (e, field) => {
+  const handlePatientSearchChange = (e, field) => {
     const value = e.target.value;
-    setSearchQuery((prevSearchQuery) => ({
+    setPatientSearchQuery((prevSearchQuery) => ({
       ...prevSearchQuery,
       [field]: value,
     }));
   };
 
+  // for doc
+  useEffect(() => {
+    let filteredDoctors = [];
+    if (doctorSearchQuery.name || doctorSearchQuery.department) {
+      filteredDoctors = doctors
+        .filter((patient) => {
+          return (
+            patient.name
+              .toLowerCase()
+              .includes(doctorSearchQuery.name.toLowerCase()) &&
+            patient.department.includes(doctorSearchQuery.department)
+          );
+        })
+        .slice(0, 3); // Limit to the first 3 search results
+    }
+    setDoctorSearchResults(filteredDoctors);
+  }, [doctorSearchQuery, doctors]);
+
+  const handleDoctorSearchChange = (e, field) => {
+    const value = e.target.value;
+    setDoctorSearchQuery((prevSearchQuery) => ({
+      ...prevSearchQuery,
+      [field]: value,
+    }));
+  };
+
+  const changeCalendarName = (name) => {
+    setNameOfCalendar(name);
+  };
   return (
     <div
       className="sidebar"
@@ -214,7 +273,7 @@ const Sidebar = ({ setPatientData, handleDragStart }) => {
                 type="text"
                 placeholder="Search existing patient  &#x1F50D; "
                 className="search-input"
-                onChange={(e) => handleSearchChange(e, "name")}
+                onChange={(e) => handlePatientSearchChange(e, "name")}
                 style={{ fontSize: `${fontSize}px` }}
               />
             </div>
@@ -232,7 +291,7 @@ const Sidebar = ({ setPatientData, handleDragStart }) => {
                 type="text"
                 placeholder="Phone number"
                 className="search-input"
-                onChange={(e) => handleSearchChange(e, "phonenumber")}
+                onChange={(e) => handlePatientSearchChange(e, "phonenumber")}
                 style={{ fontSize: `${fontSize}px` }}
               />
             </div>
@@ -248,7 +307,9 @@ const Sidebar = ({ setPatientData, handleDragStart }) => {
                 type="text"
                 placeholder="Patient Health ID"
                 className="search-input"
-                onChange={(e) => handleSearchChange(e, "healthCardNumber")}
+                onChange={(e) =>
+                  handlePatientSearchChange(e, "healthCardNumber")
+                }
                 style={{ fontSize: `${fontSize}px` }}
               />
             </div>
@@ -264,12 +325,12 @@ const Sidebar = ({ setPatientData, handleDragStart }) => {
                 type="text"
                 placeholder="Patient Address"
                 className="search-input"
-                onChange={(e) => handleSearchChange(e, "address")}
+                onChange={(e) => handlePatientSearchChange(e, "address")}
                 style={{ fontSize: `${fontSize}px` }}
               />
             </div>
             <div className="search-result-container">
-              {searchResults.map((patient) => (
+              {patientSearchResults.map((patient) => (
                 <div
                   key={patient.healthCardNumber}
                   draggable="true"
@@ -312,6 +373,7 @@ const Sidebar = ({ setPatientData, handleDragStart }) => {
                 type="text"
                 placeholder="Search doctor"
                 className="search-input"
+                onChange={(e) => handleDoctorSearchChange(e, "name")}
                 style={{ fontSize: `${fontSize}px` }}
               />
             </div>
@@ -324,6 +386,7 @@ const Sidebar = ({ setPatientData, handleDragStart }) => {
                 type="text"
                 placeholder="Search Department"
                 className="search-input"
+                onChange={(e) => handleDoctorSearchChange(e, "department")}
                 style={{ fontSize: `${fontSize}px` }}
               />
             </div>
@@ -350,6 +413,26 @@ const Sidebar = ({ setPatientData, handleDragStart }) => {
                 className="search-input"
                 style={{ fontSize: `${fontSize}px` }}
               />
+            </div>
+            <div className="search-result-container">
+              {doctorSearchResults.map((doc) => (
+                // <div
+                //   key={doc.healthCardNumber}
+                //   draggable="true"
+                //   onDragStart={(event) => handleDragStart(event, doc)}
+                //   className="drag-card"
+                // >
+                //   <h3>{doc.name}</h3>
+                //   <p>Health ID: {doc.department}</p>
+                // </div>
+                <button
+                  key={doc.name}
+                  onClick={() => setNameOfCalendar(doc.name)}
+                >
+                  <h3>{doc.name}</h3>
+                  <p>Health ID: {doc.department}</p>
+                </button>
+              ))}
             </div>
           </div>
         </div>
