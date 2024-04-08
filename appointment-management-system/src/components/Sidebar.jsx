@@ -391,25 +391,20 @@ const Sidebar = ({ setPatientData, handleDragStart, setDocCalendar }) => {
         </div>
         {selectedPatient && (
           <div className="search-result-container">
-            {patientSearchResults.map((patient) => (
-              <div
-                key={patient.healthCardNumber}
-                draggable="true"
-                onDragStart={(event) => handleDragStart(event, patient)}
-                className="drag-card"
-              >
-                <div className="drag-card-content">
-                  <h3>{patient.name}</h3>
-                  <p>Health ID: {patient.healthCardNumber}</p>
-                </div>
-                <div
-                  className="clear-patient-icon"
-                  onClick={handleClearPatient}
-                >
-                  ❌
-                </div>
+            <div
+              key={selectedPatient.healthCardNumber}
+              draggable="true"
+              onDragStart={(event) => handleDragStart(event, selectedPatient)}
+              className="drag-card"
+            >
+              <div className="drag-card-content">
+                <h3>{selectedPatient.name}</h3>
+                <p>Health ID: {selectedPatient.healthCardNumber}</p>
               </div>
-            ))}
+              <div className="clear-patient-icon" onClick={handleClearPatient}>
+                ❌
+              </div>
+            </div>
           </div>
         )}
         <div className="dropdown">
