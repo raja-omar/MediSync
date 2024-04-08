@@ -127,6 +127,15 @@ const Sidebar = ({ setPatientData, handleDragStart, setNameOfCalendar }) => {
     setPatientData(formData);
     setShowDialog(false);
     console.log(formData);
+    setPatientSearchResults([
+      {
+        name: formData.firstName + formData.lastName,
+        phonenumber: "192398",
+        healthCardNumber: formData.healthCardNumber,
+        address: formData.address,
+        dob: formData.dob,
+      },
+    ]);
   };
 
   const handleMouseDown = (e) => {
@@ -176,7 +185,7 @@ const Sidebar = ({ setPatientData, handleDragStart, setNameOfCalendar }) => {
         .slice(0, 3); // Limit to the first 3 search results
     }
     setPatientSearchResults(filteredPatients);
-  }, [patientSearchResults, patients]);
+  }, [patients, patientSearchQuery]);
 
   const handlePatientSearchChange = (e, field) => {
     const value = e.target.value;
