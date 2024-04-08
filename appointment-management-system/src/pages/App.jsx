@@ -7,15 +7,15 @@ import "../styles/App.css";
 
 function App() {
   const [patientData, setPatientData] = useState(null);
-  const [nameOfCalendar, setNameOfCalendar] = useState("No one");
+  const [docCalendar, setDocCalendar] = useState();
 
   return (
     <div className="app-container">
       <Calendar
         patientData={patientData}
         setPatientData={setPatientData}
-        nameOfCalendar={nameOfCalendar}
-        setNameOfCalendar={setNameOfCalendar}
+        docCalendar={docCalendar}
+        setDocCalendar={setDocCalendar}
       />
     </div>
   );

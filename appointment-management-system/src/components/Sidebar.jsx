@@ -10,7 +10,7 @@ import PatientRegistrationDialog from "./PatientRegistrationForm";
 import "../styles/SidebarStyles.css";
 
 // eslint-disable-next-line react/prop-types
-const Sidebar = ({ setPatientData, handleDragStart, setNameOfCalendar }) => {
+const Sidebar = ({ setPatientData, handleDragStart, setDocCalendar }) => {
   const [showDialog, setShowDialog] = useState(false);
   const [patientDropdownVisible, setPatientDropdownVisible] = useState(false);
   const [doctorDropdownVisible, setDoctorDropdownVisible] = useState(false);
@@ -72,18 +72,40 @@ const Sidebar = ({ setPatientData, handleDragStart, setNameOfCalendar }) => {
       {
         name: "Saadman Rahman",
         department: "ortho",
+        timeOff: [
+          "1-9",
+          "1-10",
+          "1-11",
+          "1-11",
+          "1-12",
+          "1-13",
+          "1-14",
+          "1-15",
+        ],
       },
       {
         name: "Saadman Justin",
         department: "eye",
+        timeOff: [
+          "3-9",
+          "3-10",
+          "3-11",
+          "3-11",
+          "3-12",
+          "3-13",
+          "3-14",
+          "3-15",
+        ],
       },
       {
         name: "Smit Saraiya",
         department: "leg",
+        timeOff: ["2-9", "2-10", "4-11", "4-12"],
       },
       {
         name: "Omar Saraiya",
         department: "nose",
+        timeOff: [],
       },
     ],
     []
@@ -219,6 +241,9 @@ const Sidebar = ({ setPatientData, handleDragStart, setNameOfCalendar }) => {
     }));
   };
 
+  const changeDoc = (doc) => {
+    setDocCalendar(doc);
+  };
   return (
     <div
       className="sidebar"
@@ -428,7 +453,7 @@ const Sidebar = ({ setPatientData, handleDragStart, setNameOfCalendar }) => {
                 <button
                   className="search-result-button"
                   key={doc.name}
-                  onClick={() => setNameOfCalendar(doc.name)}
+                  onClick={() => changeDoc(doc)}
                 >
                   <h3>{doc.name}</h3>
                   <p>Health ID: {doc.department}</p>

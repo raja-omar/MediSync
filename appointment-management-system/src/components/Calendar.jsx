@@ -8,11 +8,12 @@ let draggedPatient;
 let draggedCellId;
 let deleteCellId;
 
+// docCalendar will have name for the calendar name, department, time off sched, minimap as well
 const Calendar = ({
   patientData,
   setPatientData,
-  nameOfCalendar,
-  setNameOfCalendar,
+  docCalendar,
+  setDocCalendar,
 }) => {
   const [currentWeekStart, setCurrentWeekStart] = useState(new Date());
   // const [blockTimeMode, setBlockTimeMode] = useState(false);
@@ -111,9 +112,6 @@ const Calendar = ({
         currentDate.setDate(currentDate.getDate() + 1);
       }
 
-      const day = currentDate.getDate(); // Get the day of the month
-      // const formattedDay = day < 10 ? `0${day}` : day; // Add leading zero if needed
-
       const formattedDate = currentDate.toLocaleDateString("en-US", {
         weekday: "short",
         month: "short",
@@ -139,11 +137,20 @@ const Calendar = ({
     const cells = [];
     for (let i = 9; i <= 17; i++) {
       const cellId = `${dayIndex}-${i}`;
+      let isTimeOff = false;
+      if (docCalendar) {
+        isTimeOff = docCalendar.timeOff.includes(cellId); // Check if cellId is in timeOff list
+      } else {
+        isTimeOff = false;
+      }
+
+      const cellClassName = isTimeOff ? "cell lightred-bg" : "cell";
+
       cells.push(
         <div
           key={cellId}
           id={cellId}
-          className="cell"
+          className={cellClassName}
           onDrop={(event) => handleDrop(event, dayIndex, i)}
           onDragOver={handleDragOver}
           draggable={cellsData[cellId] ? "true" : "false"}
@@ -181,12 +188,13 @@ const Calendar = ({
         className="sdebar"
         setPatientData={setPatientData}
         handleDragStart={handleDragStart}
-        setNameOfCalendar={setNameOfCalendar}
+        setDocCalendar={setDocCalendar}
       />
       <div className="calendar">
         <div className="calendar-header">
           <div className="current_doc">
-            Currently seeing {nameOfCalendar}'s Calendar
+            Currently seeing {docCalendar ? docCalendar.name : "No One"}&apos;s
+            Calendar
           </div>
           <button onClick={jumpToToday} className="nav-button">
             Jump to today
