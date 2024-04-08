@@ -219,9 +219,6 @@ const Sidebar = ({ setPatientData, handleDragStart, setNameOfCalendar }) => {
     }));
   };
 
-  const changeCalendarName = (name) => {
-    setNameOfCalendar(name);
-  };
   return (
     <div
       className="sidebar"
@@ -346,6 +343,11 @@ const Sidebar = ({ setPatientData, handleDragStart, setNameOfCalendar }) => {
                 >
                   <h3>{patient.name}</h3>
                   <p>Health ID: {patient.healthCardNumber}</p>
+                  <div className="patient-details">
+                    <p>Phone: {patient.phonenumber}</p>
+                    <p>Address: {patient.address}</p>
+                    <p>Date of Birth: {patient.dob}</p>
+                  </div>
                 </div>
               ))}
             </div>
