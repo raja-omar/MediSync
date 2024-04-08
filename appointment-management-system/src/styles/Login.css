@@ -35,7 +35,19 @@
         }
         .button{
             size: 10px;
-            margin-top: 2px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            background-color: #79b3ff87;
+            border-color: #b4d4ff;
+            transition: background-color 0.5s ease, transform 0.3s ease;
+        }
+        .button:hover{
+            background-color: #a4c4ef; /* Change color on hover */
+            transform: scale(1.01);
+        }
+        .button:active{
+            background-color: #7394bf;
+            transform: scale3d(0.99);
         }
     }
 }
@@ -60,6 +72,8 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        width: fit-content;
+        padding: 10px;
         border-radius: 40px;
         scale: 1.5;
 
@@ -71,6 +85,9 @@
             display: flex;
             flex-direction: column;
             padding: 30px;
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Creates two columns of equal width */
+            gap: 10px; /* Adds space between the grid items */
         }
         .input{
             border: none;
@@ -79,9 +96,21 @@
         }
         .button{
             size: 10px;
-            margin-top: 2px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            background-color: #79b3ff87;
+            border-color: #b4d4ff;
+            transition: background-color 0.5s ease, transform 0.3s ease;
         }
-    
+        .button:hover{
+            background-color: #a4c4ef; /* Change color on hover */
+            transform: scale(1.01);
+        }
+        .button:active{
+            background-color: #7394bf;
+            transform: scale3d(0.99);
+        }
     }
+
     
 }
