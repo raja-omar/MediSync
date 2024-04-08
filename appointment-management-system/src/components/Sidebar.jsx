@@ -124,18 +124,16 @@ const Sidebar = ({ setPatientData, handleDragStart, setNameOfCalendar }) => {
   };
 
   const handleFormSubmit = (formData) => {
-    setPatientData(formData);
+    const newPatient = {
+      name: formData.firstName + " " + formData.lastName,
+      phonenumber: "192398",
+      healthCardNumber: formData.healthCardNumber,
+      address: formData.address,
+      dob: formData.dob,
+    };
+
+    setPatientSearchResults((prevPatients) => [...prevPatients, newPatient]);
     setShowDialog(false);
-    console.log(formData);
-    setPatientSearchResults([
-      {
-        name: formData.firstName + formData.lastName,
-        phonenumber: "192398",
-        healthCardNumber: formData.healthCardNumber,
-        address: formData.address,
-        dob: formData.dob,
-      },
-    ]);
   };
 
   const handleMouseDown = (e) => {
