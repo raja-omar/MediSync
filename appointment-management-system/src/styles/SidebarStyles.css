@@ -153,7 +153,6 @@
   font-family: Arial, sans-serif;
   font-size: 16px;
   cursor: pointer;
-  /* transition: all 0.3s ease-in-out; */
   position: relative;
   overflow: hidden; /* Hide overflow to prevent additional details from overflowing */
   transition: height 0.3s ease; /* Smooth transition for height change */
