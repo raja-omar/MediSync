@@ -231,8 +231,8 @@ const Sidebar = ({ isFullScreen, setIsFullScreen }) => {
           </div>
         </div>
       </div>
-      <div>
-        <h2>Logged in as Saadman</h2>
+      <div className="loggedInDetails">
+        <h2>Logged in as Dr.Saadman</h2>
         <h3>Employee Number: 1234</h3>
         <button>sign out</button>
       </div>
