@@ -40,16 +40,6 @@ const Sidebar = ({ isFullScreen, setIsFullScreen }) => {
       date: "2024-03-06",
       time: "02:15 PM",
     },
-    {
-      text: "Patient needs to schedule a follow-up appointment in 2 weeks.",
-      date: "2024-03-07",
-      time: "10:30 AM",
-    },
-    {
-      text: "Patient needs to schedule a follow-up appointment in 2 weeks.",
-      date: "2024-03-07",
-      time: "10:30 AM",
-    },
   ];
 
   const togglePatientDropdown = () => {

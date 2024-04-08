@@ -180,10 +180,18 @@ const Calendar = () => {
     return cells;
   };
 
+  const jumpToToday = () => {
+    setCurrentWeekStart(new Date());
+  };
+
   return (
     <>
       <div className="calendar">
         <div className="calendar-header">
+          <button onClick={jumpToToday} className="nav-button">
+            Jump to today
+          </button>
+
           <button onClick={goToPreviousWeek} className="nav-button">
             Previous Week
           </button>

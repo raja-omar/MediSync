@@ -212,6 +212,7 @@ const Calendar = ({
           {renderDays()}
         </div>
       </div>
+
       {showErrorModal && <ErrorModal onClose={handleCloseErrorModal} />}
       {showConfirmModal && (
         <div className="modal-wrapper">
