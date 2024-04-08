@@ -183,9 +183,6 @@ const Calendar = () => {
   return (
     <>
       <div className="calendar">
-        <div className="log">
-          <p className="log-in-as">Loged in as DR. SAADMAN</p>
-        </div>
         <div className="calendar-header">
           <button onClick={goToPreviousWeek} className="nav-button">
             Previous Week
