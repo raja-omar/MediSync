@@ -133,3 +133,40 @@
   cursor: ew-resize;
   background-color: #ddd;
 }
+
+.search-result-container {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+.drag-card {
+  margin-top: 10px;
+  display: inline-block;
+  padding: 10px;
+  border: 2px solid #007bff;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+  color: #212529;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.drag-card h3 {
+  color: #212529;
+}
+
+.drag-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.drag-card:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+

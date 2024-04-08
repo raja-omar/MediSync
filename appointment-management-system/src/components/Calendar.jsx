@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../styles/Calendar.css";
 import ErrorModal from "./ErrorModal";
 import Sidebar from "./Sidebar";
+import "../styles/PatientCardStyles.css";
 
 let draggedPatient;
 let draggedCellId;
@@ -133,16 +134,6 @@ const Calendar = ({ patientData, setPatientData }) => {
     return currentWeek;
   };
 
-  // const handleCellClick = (event) => {
-  //   if (blockTimeMode) {
-  //     if (event.target.classList.contains("lightred-bg")) {
-  //       event.target.classList.remove("lightred-bg");
-  //     } else {
-  //       event.target.classList.add("lightred-bg");
-  //     }
-  //   }
-  // };
-
   const renderCells = (dayIndex) => {
     const cells = [];
     for (let i = 9; i <= 17; i++) {
@@ -197,9 +188,6 @@ const Calendar = ({ patientData, setPatientData }) => {
           <button onClick={goToNextWeek} className="nav-button">
             Next Week
           </button>
-          {/* <button onClick={handleBlockTimeToggle} className="nav-button">
-            {blockTimeMode ? "Disable Block Time" : "Block Time"}
-          </button> */}
         </div>
         <div className="calendar-body">
           {renderTimeColumn()}

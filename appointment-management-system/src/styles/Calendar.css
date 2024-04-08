@@ -94,11 +94,11 @@
   position: relative;
 }
 
+
 .patient-card {
   background-color: #65efa7;
   border: 1px solid #ccc;
   color: #212529;
-
   padding: 5px;
   position: absolute;
   top: 0;
@@ -110,6 +110,9 @@
   align-items: center;
   justify-content: space-between;
   transition: all 0.3s ease;
+  .patient-info p {
+    color: black;
+  }
 }
 
 .patient-card:hover {
@@ -132,31 +135,6 @@
   background-color: lightcoral;
 }
 
-.drag-card {
-  margin-top: 10px;
-  display: inline-block;
-  padding: 10px;
-  border: 2px solid #007bff;
-  border-radius: 8px;
-  background-color: #f8f9fa;
-  color: #212529;
-  font-family: Arial, sans-serif;
-  font-size: 16px;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-}
-
-.drag-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.drag-card:active {
-  transform: translateY(0);
-  box-shadow: none;
-}
-
-/* Add these styles to your existing CSS file */
 .modal-wrapper {
   position: fixed;
   top: 0;
@@ -205,3 +183,5 @@ body.modal-open .calendar {
 body.modal-open .calendar {
   pointer-events: none; /* Disable pointer events */
 }
+
+
