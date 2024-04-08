@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import "../styles/Calendar.css";
 import ErrorModal from "./ErrorModal";
+import Sidebar from "./Sidebar";
 
 let draggedPatient;
 let draggedCellId;
 let deleteCellId;
 
-const Calendar = () => {
+const Calendar = ({ patientData, setPatientData }) => {
   const [currentWeekStart, setCurrentWeekStart] = useState(new Date());
   // const [blockTimeMode, setBlockTimeMode] = useState(false);
   const [cellsData, setCellsData] = useState({});
@@ -151,7 +152,6 @@ const Calendar = () => {
           key={cellId}
           id={cellId}
           className="cell"
-          onClick={(event) => handleCellClick(event)}
           onDrop={(event) => handleDrop(event, dayIndex, i)}
           onDragOver={handleDragOver}
           draggable={cellsData[cellId] ? "true" : "false"}
@@ -181,6 +181,11 @@ const Calendar = () => {
 
   return (
     <>
+      <Sidebar
+        className="sdebar"
+        setPatientData={setPatientData}
+        handleDragStart={handleDragStart}
+      />
       <div className="calendar">
         <div className="calendar-header">
           <button onClick={goToPreviousWeek} className="nav-button">
@@ -199,19 +204,6 @@ const Calendar = () => {
         <div className="calendar-body">
           {renderTimeColumn()}
           {renderDays()}
-        </div>
-        <div
-          draggable="true"
-          onDragStart={(event) =>
-            handleDragStart(event, {
-              name: "John Doe",
-              healthCardNumber: "12345",
-            })
-          }
-          className="drag-card"
-        >
-          <h3>John Doe</h3>
-          <p>Health ID: 12345</p>
         </div>
       </div>
       {showErrorModal && <ErrorModal onClose={handleCloseErrorModal} />}

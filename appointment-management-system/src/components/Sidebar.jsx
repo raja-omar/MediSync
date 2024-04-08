@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   FaUser,
   FaUserMd,
@@ -10,7 +10,7 @@ import PatientRegistrationDialog from "./PatientRegistrationForm";
 import "../styles/SidebarStyles.css";
 
 // eslint-disable-next-line react/prop-types
-const Sidebar = ({ setPatientData }) => {
+const Sidebar = ({ setPatientData, handleDragStart }) => {
   const [showDialog, setShowDialog] = useState(false);
   const [patientDropdownVisible, setPatientDropdownVisible] = useState(false);
   const [doctorDropdownVisible, setDoctorDropdownVisible] = useState(false);
@@ -18,29 +18,32 @@ const Sidebar = ({ setPatientData }) => {
   const [sidebarWidth, setSidebarWidth] = useState(250);
   const [startX, setStartX] = useState(0);
   const [fontSize, setFontSize] = useState(16);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState({
+    name: "",
+    phonenumber: "",
+    healthCardNumber: "",
+    address: "",
+    dob: "",
+  });
   const [searchResults, setSearchResults] = useState([]);
 
   const patients = [
     {
-      firstName: "Saadman",
-      lastName: "Rahman",
+      name: "Saadman Rahman",
       phonenumber: "12345",
       healthCardNumber: "6789",
       address: "1st street 10 av T2P 5G3",
       dob: "2001-12-15",
     },
     {
-      firstName: "Saadman",
-      lastName: "Justin",
+      name: "Saadman Justin",
       phonenumber: "12390",
       healthCardNumber: "0987",
       address: "1st street 10 av T2P 5G3",
       dob: "2001-12-15",
     },
     {
-      firstName: "Smit",
-      lastName: "Saraiya",
+      name: "Smit Saraiya",
       phonenumber: "098908",
       healthCardNumber: "1231",
       address: "India",
@@ -109,20 +112,26 @@ const Sidebar = ({ setPatientData }) => {
     document.body.style.userSelect = "auto";
   };
 
-  const handleSearchChange = (e) => {
-    const query = e.target.value;
-    setSearchQuery(query);
-    const filteredResults = patients.filter(
-      (patient) =>
-        (patient.firstName + patient.lastName)
+  useEffect(() => {
+    const filteredPatients = patients.filter((patient) => {
+      return (
+        patient.name.toLowerCase().includes(searchQuery.name.toLowerCase()) &&
+        patient.phonenumber.includes(searchQuery.phonenumber) &&
+        patient.healthCardNumber.includes(searchQuery.healthCardNumber) &&
+        patient.address
           .toLowerCase()
-          .includes(query.toLowerCase()) ||
-        patient.phonenumber.includes(query) ||
-        patient.dob.includes(query) ||
-        patient.healthCardNumber.includes(query) ||
-        patient.address.includes(query.toLowerCase())
-    );
-    setSearchResults(filteredResults.slice(0, 3)); // Get top 3 matching results
+          .includes(searchQuery.address.toLowerCase())
+      );
+    });
+    setSearchResults(filteredPatients);
+  }, [searchQuery]);
+
+  const handleSearchChange = (e, field) => {
+    const value = e.target.value;
+    setSearchQuery((prevSearchQuery) => ({
+      ...prevSearchQuery,
+      [field]: value,
+    }));
   };
 
   return (
@@ -241,17 +250,19 @@ const Sidebar = ({ setPatientData }) => {
                 style={{ fontSize: `${fontSize}px` }}
               />
             </div>
-          </div>
-          {searchResults.length > 0 && (
             <div>
               {searchResults.map((patient, index) => (
                 <div key={index}>
-                  <p>{`${patient.firstName} ${patient.lastName}`}</p>
-                  <p>{patient.phonenumber}</p>
+                  <p>Name: {patient.name}</p>
+                  <p>Phone Number: {patient.phonenumber}</p>
+                  <p>Health Card Number: {patient.healthCardNumber}</p>
+                  <p>Address: {patient.address}</p>
+                  <p>Date of Birth: {patient.dob}</p>
+                  <hr />
                 </div>
               ))}
             </div>
-          )}
+          </div>
         </div>
         <div className="dropdown">
           <button
@@ -322,6 +333,19 @@ const Sidebar = ({ setPatientData }) => {
               />
             </div>
           </div>
+        </div>
+        <div
+          draggable="true"
+          onDragStart={(event) =>
+            handleDragStart(event, {
+              name: "John Doe",
+              healthCardNumber: "12345",
+            })
+          }
+          className="drag-card"
+        >
+          <h3>John Doe</h3>
+          <p>Health ID: 12345</p>
         </div>
       </div>
       <div>
