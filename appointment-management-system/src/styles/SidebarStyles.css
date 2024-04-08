@@ -241,7 +241,7 @@
 
 .patient-search-button:hover .patient-details {
   display: block; /* Show additional details when hovered */
-  max-width:min-content
+  max-width:fit-content;
 }
 
 .patient-details img {

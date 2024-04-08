@@ -195,6 +195,9 @@ const Calendar = () => {
           <button onClick={goToPreviousWeek} className="nav-button">
             Previous Week
           </button>
+          <button onClick={goToNextWeek} className="nav-button">
+            Next Week
+          </button>
           <div className="toggle-block-time">
             <label>{blockTimeMode ? "Disable Block Time" : "Block Time"}</label>
             <label className="switch">
@@ -207,11 +210,7 @@ const Calendar = () => {
               />
               <span className="slider"></span>
             </label>
-          </div>
-
-          <button onClick={goToNextWeek} className="nav-button">
-            Next Week
-          </button>
+          </div>          
         </div>
         <div className="calendar-body">
           {renderTimeColumn()}
