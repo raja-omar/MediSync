@@ -90,10 +90,6 @@ const Calendar = ({
     setCurrentWeekStart(getPreviousWeekStart());
   };
 
-  // const handleBlockTimeToggle = () => {
-  //   setBlockTimeMode(!blockTimeMode);
-  // };
-
   const renderTimeColumn = () => {
     const timeSlots = [];
     for (let i = 9; i <= 17; i++) {
@@ -175,6 +171,10 @@ const Calendar = ({
     return cells;
   };
 
+  const jumpToToday = () => {
+    setCurrentWeekStart(new Date());
+  };
+
   return (
     <>
       <Sidebar
@@ -185,12 +185,16 @@ const Calendar = ({
       />
       <div className="calendar">
         <div className="calendar-header">
-          <button onClick={goToPreviousWeek} className="nav-button">
-            Previous Week
-          </button>
           <div className="current_doc">
             Currently seeing {nameOfCalendar}'s Calendar
           </div>
+          <button onClick={jumpToToday} className="nav-button">
+            Jump to today
+          </button>
+
+          <button onClick={goToPreviousWeek} className="nav-button">
+            Previous Week
+          </button>
           <button onClick={goToNextWeek} className="nav-button">
             Next Week
           </button>
