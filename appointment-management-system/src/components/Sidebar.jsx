@@ -5,6 +5,7 @@ import {
   FaSearch,
   FaUserPlus,
   FaChevronDown,
+  FaTimes,
 } from "react-icons/fa";
 import PatientRegistrationDialog from "./PatientRegistrationForm";
 import "../styles/SidebarStyles.css";
@@ -18,6 +19,8 @@ const Sidebar = ({ setPatientData, handleDragStart, setDocCalendar }) => {
   const [sidebarWidth, setSidebarWidth] = useState(400);
   const [startX, setStartX] = useState(0);
   const [fontSize, setFontSize] = useState(16);
+  const [selectedPatient, setSelectedPatient] = useState(null);
+
   const [patientSearchQuery, setPatientSearchQuery] = useState({
     name: "",
     phonenumber: "",
@@ -244,6 +247,15 @@ const Sidebar = ({ setPatientData, handleDragStart, setDocCalendar }) => {
   const changeDoc = (doc) => {
     setDocCalendar(doc);
   };
+
+  const handlePatientSelect = (patient) => {
+    setSelectedPatient(patient); // Set the selected patient
+  };
+
+  const handleClearPatient = () => {
+    setSelectedPatient(null); // Clear selected patient
+  };
+
   return (
     <div
       className="sidebar"
@@ -360,24 +372,46 @@ const Sidebar = ({ setPatientData, handleDragStart, setDocCalendar }) => {
             </div>
             <div className="search-result-container">
               {patientSearchResults.map((patient) => (
-                <div
-                  key={patient.healthCardNumber}
-                  draggable="true"
-                  onDragStart={(event) => handleDragStart(event, patient)}
-                  className="drag-card"
+                <button
+                  className="patient-search-button"
+                  key={patient.name}
+                  onClick={() => handlePatientSelect(patient)}
                 >
                   <h3>{patient.name}</h3>
-                  <p>Health ID: {patient.healthCardNumber}</p>
+                  <p>Health ID: {patient.department}</p>
                   <div className="patient-details">
                     <p>Phone: {patient.phonenumber}</p>
                     <p>Address: {patient.address}</p>
                     <p>Date of Birth: {patient.dob}</p>
                   </div>
-                </div>
+                </button>
               ))}
             </div>
           </div>
         </div>
+        {selectedPatient && (
+          <div className="search-result-container">
+            {patientSearchResults.map((patient) => (
+              <div
+                key={patient.healthCardNumber}
+                draggable="true"
+                onDragStart={(event) => handleDragStart(event, patient)}
+                className="drag-card"
+              >
+                <div className="drag-card-content">
+                  <h3>{patient.name}</h3>
+                  <p>Health ID: {patient.healthCardNumber}</p>
+                </div>
+                <div
+                  className="clear-patient-icon"
+                  onClick={handleClearPatient}
+                >
+                  ❌
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
         <div className="dropdown">
           <button
             className="dropbtn"

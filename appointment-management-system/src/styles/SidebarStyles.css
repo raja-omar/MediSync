@@ -144,7 +144,8 @@
 
 .drag-card {
   margin-top: 10px;
-  display: inline-block;
+  display: flex;
+  align-items: center;
   padding: 10px;
   border: 2px solid #007bff;
   border-radius: 8px;
@@ -207,4 +208,42 @@
 
 .drag-card:hover .patient-details {
   display: block; /* Show additional details when hovered */
+}
+
+.patient-search-button {
+  background-color: rgb(209, 209, 209);
+  border-radius: 20px;
+  padding: 10px;
+  border:#007bff;
+  margin-bottom: 10px;
+  position: relative;
+  overflow: hidden; /* Hide overflow to prevent additional details from overflowing */
+  transition: height 0.3s ease; /* Smooth transition for height change */
+}
+
+.patient-search-button h3 {
+  color: #212529;
+}
+
+.patient-search-button:hover {
+  height: auto;
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.patient-search-button:active {
+  transform: scale(0.9);
+  box-shadow: none;
+}
+
+.patient-search-button:hover .patient-details {
+  display: block; /* Show additional details when hovered */
+}
+
+.drag-card-content {
+  flex-grow: 1;
+}
+
+.clear-patient-icon {
+  margin-left: auto; /* This will push the cross icon to the right */
 }
