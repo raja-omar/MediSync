@@ -416,16 +416,8 @@ const Sidebar = ({ setPatientData, handleDragStart, setNameOfCalendar }) => {
             </div>
             <div className="search-result-container">
               {doctorSearchResults.map((doc) => (
-                // <div
-                //   key={doc.healthCardNumber}
-                //   draggable="true"
-                //   onDragStart={(event) => handleDragStart(event, doc)}
-                //   className="drag-card"
-                // >
-                //   <h3>{doc.name}</h3>
-                //   <p>Health ID: {doc.department}</p>
-                // </div>
                 <button
+                  className="search-result-button"
                   key={doc.name}
                   onClick={() => setNameOfCalendar(doc.name)}
                 >

@@ -189,7 +189,7 @@ const Calendar = ({
             Previous Week
           </button>
           <div className="current_doc">
-            Currently seeing {nameOfCalendar}'s' Calendar
+            Currently seeing {nameOfCalendar}'s Calendar
           </div>
           <button onClick={goToNextWeek} className="nav-button">
             Next Week

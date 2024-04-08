@@ -170,3 +170,25 @@
   box-shadow: none;
 }
 
+.search-result-button {
+  background-color: rgb(209, 209, 209);
+  border-radius: 20px;
+  padding: 10px;
+  border:#007bff;
+  margin-bottom: 10px;
+  transition: transform 0.3s ease;
+}
+
+.search-result-button h3 {
+  color: #212529;
+}
+
+.search-result-button:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.search-result-button:active {
+  transform: scale(0.9);
+  box-shadow: none;
+}
