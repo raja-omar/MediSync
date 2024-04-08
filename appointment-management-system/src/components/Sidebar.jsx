@@ -9,7 +9,6 @@ import {
 } from "react-icons/fa";
 import PatientRegistrationDialog from "./PatientRegistrationForm";
 import "../styles/SidebarStyles.css";
-
 // eslint-disable-next-line react/prop-types
 const Sidebar = ({ setPatientData, handleDragStart, setDocCalendar }) => {
   const [showDialog, setShowDialog] = useState(false);
@@ -31,6 +30,13 @@ const Sidebar = ({ setPatientData, handleDragStart, setDocCalendar }) => {
   const [doctorSearchQuery, setDoctorSearchQuery] = useState({
     name: "",
     department: "",
+  });
+
+  const [docMinis, setDocMinis] = useState({
+    "Saadman Rahman": "/saadman-rahman.PNG",
+    "Saadman Justin": "/saadman-justin.PNG",
+    "Omar Saraiya": "/omar-saraiya.PNG",
+    "Smit Saraiya": "/smit-saraiya.PNG",
   });
 
   const [patientSearchResults, setPatientSearchResults] = useState([]);
@@ -480,12 +486,15 @@ const Sidebar = ({ setPatientData, handleDragStart, setDocCalendar }) => {
             <div className="search-result-container">
               {doctorSearchResults.map((doc) => (
                 <button
-                  className="search-result-button"
+                  className="patient-search-button"
                   key={doc.name}
                   onClick={() => changeDoc(doc)}
                 >
                   <h3>{doc.name}</h3>
                   <p>Health ID: {doc.department}</p>
+                  <div className="patient-details">
+                    <img src={docMinis[doc.name]} alt={doc.name} />
+                  </div>
                 </button>
               ))}
             </div>
