@@ -499,6 +499,10 @@ const Sidebar = ({ setPatientData, handleDragStart, setDocCalendar }) => {
               ))}
             </div>
           </div>
+          <div className="drag-card">
+            <h3>Dr. Heinz Doofenshmirtz</h3>
+            <p>practition: Orthopedics</p>
+          </div>
         </div>
       </div>
       <div className="loggedInDetails">
@@ -512,7 +516,14 @@ const Sidebar = ({ setPatientData, handleDragStart, setDocCalendar }) => {
           onSubmit={handleFormSubmit}
         />
       )}
+      <div className="upcoming-appointments">
+        {/* make up some upcoming appointments to display here for receptionist */}
+      </div>
+      <div className="Doctor Notes">
+        {/* make up some upcoming appointments to display here for receptionist */}
+      </div>
     </div>
+    // </div>
   );
 };
 
