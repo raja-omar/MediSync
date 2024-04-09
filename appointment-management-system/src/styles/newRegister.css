@@ -1,0 +1,90 @@
+/* newRegister.css */
+.register-container {
+    display: flex;
+    height: 100vh;
+}
+
+.sample-pic {
+    width: 1400px; /* Increased width */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover; /* Crop the image to cover the container */
+    position: absolute;
+    right: 25px;
+    bottom: 0px;
+}
+
+.screenshot-section {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    background-color: #f0f8ff;
+}
+
+.screenshot-section .ss-main-text {
+    color: black;
+    font-size: 24px;
+    font-weight: bold;
+    padding-top: 40px;
+    padding-left: 20px;
+    padding-right: 100px;
+    margin-bottom: 10px;
+}
+
+.ss-subtext {
+    padding-left: 20px;
+}
+
+.form-section {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.register-box {
+    padding: 30px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.register-box h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"],
+select {
+    width: calc(100% - 20px); /* Adjusted width */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    /* Elongating the text fields */
+    width: 100%; /* 100% width */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #4cb448;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #3a9033;
+}

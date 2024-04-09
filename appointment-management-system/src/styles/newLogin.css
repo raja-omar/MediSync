@@ -1,0 +1,117 @@
+/* newLogin.css */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f8ff; /* light blue background color */
+}
+
+body {
+  font-family: 'Roboto', sans-serif; /* Use Roboto font for all elements */
+}
+
+.login-form {
+  font-family: 'Roboto', sans-serif; /* Use Roboto font for login form */
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+}
+
+.header-text {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.header-subtext {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 17px;
+}
+
+.login-inputs {
+  margin-bottom: 20px;
+  font-size: 11px;
+}
+
+.login-input label {
+  display: block;
+  text-align: left;
+  font-size: 14px;
+}
+
+.login-inputs input {
+  width: 92%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.password-input {
+  position: relative;
+}
+
+.show-password-button {
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.login-buttons {
+  text-align: center;
+}
+
+.login-button {
+  background-color: #4cb448; /* green login button */
+  font-size: 15px;
+  color: #fff;
+  padding: 10px 0;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.signup-link {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.signup-button {
+  color: #8d2091; /* purple signup button text */
+  text-decoration: none;
+}
+
+.error-message {
+  color: #dc3545; /* red error message */
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+.forgot-password {
+  text-align: left;
+  margin-top: 5px;
+  font-size: 12px;
+  color: #007bff; /* blue forgot password text */
+}
+
+.back-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: #007bff; /* blue back button text */
+}
