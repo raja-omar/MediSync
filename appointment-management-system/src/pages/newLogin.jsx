@@ -7,6 +7,9 @@ export default function Login(props) {
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const docUser = "doctorSmit@email.com";
+  const recepUser = "recepSaadman@email.com"
 
   return (
     <div className="login-container">
@@ -24,7 +27,7 @@ export default function Login(props) {
             <input
               className="login-input"
               type="text"
-              onChange={(event) => {}}
+              onChange={(event) => setEmail(event.target.value)}
             />
             {emailError && (
               <h3 className="error-message">Invalid E-mail address.</h3>
@@ -56,7 +59,13 @@ export default function Login(props) {
           </div>
         </div>
         <div className="login-buttons">
-          <button className="login-button" onClick={() => navigate("/")}>
+          <button className="login-button" onClick={() => {
+            if (email.includes("doctor")){
+              navigate("/doctorscreen")
+            } else{
+              navigate("/")
+            }
+          }}>
             Login
           </button>
         </div>
