@@ -499,10 +499,6 @@ const Sidebar = ({ setPatientData, handleDragStart, setDocCalendar }) => {
               ))}
             </div>
           </div>
-          <div className="drag-card">
-            <h3>Dr. Heinz Doofenshmirtz</h3>
-            <p>practition: Orthopedics</p>
-          </div>
         </div>
       </div>
       <div className="loggedInDetails">
