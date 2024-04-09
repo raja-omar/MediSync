@@ -93,7 +93,6 @@ const Calendar = ({
 
   const renderTimeColumn = () => {
     const timeSlots = [];
-    timeSlots.push(<div className="time-slot"> </div>);
 
     for (let i = 9; i <= 17; i++) {
       timeSlots.push(
