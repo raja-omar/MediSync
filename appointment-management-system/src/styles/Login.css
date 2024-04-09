@@ -1,14 +1,48 @@
 .doctor-login-section{
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     border: 5px solid black;
     padding: 20px;
-    min-height: 1000px;
+    height: 100vh;
     justify-content: center;
     justify-content: space-evenly;
-    background-color: rgb(27, 27, 27);
-    background-image: url('../imgs/background.jpg');
+    font-family: Arial, sans-serif;  
+    background: linear-gradient(to bottom, rgb(14, 130, 188), rgba(0, 116, 122, 0)); /* Add a fading background */
+    
+    .circle {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        background-color: rgba(231, 246, 67, 0.294);
+        border-radius: 50%;
+        pointer-events: none;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%); 
+        z-index: 999;     
+    }
+    #circle1{
+        left: 90%;
+        top: 20%;
+    }
+    #circle2{
+        left: 13%;
+        top: 29%;
+    }
+    #circle3{
+        left: 64%;
+        top: 79%;
+    }
+    #circle4{
+        left: 34%;
+        top: 90%;
+    }
+    #circle5{
+        left: 70%;
+        top: 9%;
+    }
 
     .container{
         background-color: white;
@@ -18,26 +52,45 @@
         justify-content: center;
         border-radius: 30px;
         min-width: 190px;
+        scale: 1.5;
+
         .header{
             font-size: xx-large;
-            padding: 20px;
+            padding-top: 20px;
         }
         .form{
             display: flex;
             flex-direction: column;
-            padding: 5px;
+            padding: 20px;
+            position: relative;
+            z-index: 1000;
         }
         .input{
-            /* padding: 10px; */
-            /* border-bottom-width: 3px; */
+            border: none;
+            border-bottom: 2px solid #000;
+            margin-bottom: 2px; 
         }
         .button{
             size: 10px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            background-color: #79b3ff87;
+            border-color: #b4d4ff;
+            transition: background-color 0.5s ease, transform 0.3s ease;
+        }
+        .button:hover{
+            background-color: #a4c4ef; /* Change color on hover */
+            transform: scale(1.01);
+        }
+        .button:active{
+            background-color: #7394bf;
+            transform: scale3d(0.99);
         }
     }
 }
 
 .doctor-register-section{
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -45,10 +98,43 @@
     padding: 10px;
     border: 5px solid black;
     justify-content: center;
-    min-height: 1000px;
+    height: 100vh;
     justify-content: space-evenly;
     background-color: rgb(27, 27, 27);
-    background-image: url('../imgs/background.jpg');
+    font-family: Arial, sans-serif;  
+    background: linear-gradient(to bottom, rgb(14, 130, 188), rgba(0, 116, 122, 0)); /* Add a fading background */
+    .circle {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        background-color: rgba(231, 246, 67, 0.294);
+        border-radius: 50%;
+        pointer-events: none;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%); 
+        z-index: 999;     
+    }
+    #circle1{
+        left: 90%;
+        top: 20%;
+    }
+    #circle2{
+        left: 13%;
+        top: 29%;
+    }
+    #circle3{
+        left: 88%;
+        top: 79%;
+    }
+    #circle4{
+        left: 34%;
+        top: 90%;
+    }
+    #circle5{
+        left: 59%;
+        top: 3%;
+    } 
 
     .container{
         background-color: white;
@@ -56,20 +142,45 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        width: fit-content;
+        padding: 10px;
         border-radius: 40px;
+        scale: 1.5;
+
         .header{
             font-size: xx-large;
-            padding: 20px;
+            padding-top: 20px;
         }
         .form{
             display: flex;
             flex-direction: column;
-            padding: 5px;
+            padding: 30px;
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Creates two columns of equal width */
+            gap: 10px; /* Adds space between the grid items */
+        }
+        .input{
+            border: none;
+            border-bottom: 2px solid #000;
+            margin-bottom: 2px; 
         }
         .button{
             size: 10px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            background-color: #79b3ff87;
+            border-color: #b4d4ff;
+            transition: background-color 0.5s ease, transform 0.3s ease;
         }
-    
+        .button:hover{
+            background-color: #a4c4ef; /* Change color on hover */
+            transform: scale(1.01);
+        }
+        .button:active{
+            background-color: #7394bf;
+            transform: scale3d(0.99);
+        }
     }
+
     
 }

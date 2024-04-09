@@ -1,13 +1,16 @@
-import React from 'react';
-import '../styles/MainSection.css';
-import Calendar from './Calendar';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
+import React from "react";
+import "../styles/MainSection.css";
+import Calendar from "./Calendar";
+import Sidebar from "./Sidebar";
 
-const MainSection = ({ patientData }) => {
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+
+const MainSection = ({ patientData, setPatientData }) => {
   return (
     <div className="main-section">
-        <Calendar />
+      <Sidebar className="sdebar" setPatientData={setPatientData} />
+      <Calendar />
       {/* {patientData ? (
         <div>
           <h3>Patient Details</h3>

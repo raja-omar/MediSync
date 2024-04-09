@@ -1,6 +1,6 @@
 .calendar {
   width: 100%;
-  margin: 10px;
+  margin: 0;
 }
 
 .calendar-header {
@@ -8,24 +8,37 @@
   margin-bottom: 10px;
   display: flex;
   justify-content: space-between;
+  align-items: center; /* Align buttons vertically in the center */
+  background-color: rgba(255, 255, 255, 0.8); /* Light and transparent background */
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .nav-button {
-  background-color: #007bff;
+  background-color: #0056b3; /* Darker colored buttons */
   color: white;
   border: none;
   padding: 8px 12px;
   cursor: pointer;
-  margin-right: 10px;
   border-radius: 5px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.nav-button:last-child {
-  margin-right: 0;
+.nav-button:not(:last-child) {
+  margin-right: 10px; /* Add spacing between buttons */
+}
+
+.nav-button.block-time {
+  background-color: #ff6347; /* Red color for Block Time button */
 }
 
 .nav-button:hover {
-  background-color: #0056b3;
+  background-color: #004080; /* Darker background color on hover */
+  transform: scale(1.05);
+}
+
+.nav-button:active {
+  transform: scale(0.95);
 }
 
 .calendar-body {
@@ -41,6 +54,7 @@
   background-color: #f7f7f7;
   padding: 10px;
   border-bottom: 1px solid #ccc;
+  font-family: Consolas, monospace;
 }
 
 .day-date h3 {
@@ -55,9 +69,13 @@
 .time-column {
   display: flex;
   flex-direction: column;
+  margin-top: 43px;
+  font-family: Consolas, monospace;
+  width: 75px;
 }
 
 .time-slot {
+  background-color: #f7f7f7;
   height: 50px;
   display: flex;
   align-items: center;
@@ -76,9 +94,11 @@
   position: relative;
 }
 
+
 .patient-card {
   background-color: #65efa7;
   border: 1px solid #ccc;
+  color: #212529;
   padding: 5px;
   position: absolute;
   top: 0;
@@ -89,6 +109,16 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  transition: all 0.3s ease;
+  .patient-info p {
+    color: black;
+  }
+}
+
+.patient-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
 }
 
 .delete-patient-btn {
@@ -105,26 +135,53 @@
   background-color: lightcoral;
 }
 
-.drag-card {
-  margin-top: 10px;
-  display: inline-block;
-  padding: 10px;
-  border: 2px solid #007bff;
-  border-radius: 8px;
-  background-color: #f8f9fa;
-  color: #212529;
-  font-family: Arial, sans-serif;
-  font-size: 16px;
+.modal-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999; /* Ensure the modal is above other content */
+}
+
+.modal {
+  background-color: #fefefe;
+  padding: 20px;
+  border-radius: 10px;
+  position: relative;
+  z-index: 10000; /* Ensure the modal is above the backdrop */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  margin-top: 20px;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
 }
 
-.drag-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+/* Apply backdrop filter to blur the background */
+body.modal-open {
+  overflow: hidden; /* Disable scrolling */
 }
 
-.drag-card:active {
-  transform: translateY(0);
-  box-shadow: none;
+/* Add modal-open class to body when modal is open */
+body.modal-open .calendar {
+  filter: blur(50px); /* Blur the background */
 }
+
+/* Ensure the calendar stays behind the modal */
+body.modal-open .calendar {
+  pointer-events: none; /* Disable pointer events */
+}
+
+

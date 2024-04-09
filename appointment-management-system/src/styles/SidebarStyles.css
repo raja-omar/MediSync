@@ -1,12 +1,20 @@
 .sidebar {
-  width: 250px; /* Width of the sidebar */
-  height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  transition: width 0.3s;
+  height: 100;
   top: 0;
   left: 0;
   background-color: #1a1a1a;
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   z-index: 1000;
+}
+
+.sidepanel-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .second-ctn {
@@ -18,11 +26,16 @@
   margin-top: 20px;
 }
 
+.dropdown h3 {
+  color: #ddd;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 .dropbtn {
   background-color: #444;
   color: white;
   padding: 10px;
-  font-size: 16px;
+  /* font-size: 16px; */
   border: none;
   cursor: pointer;
   display: flex;
@@ -83,7 +96,7 @@
   border: none;
   padding: 8px;
   border-radius: 3px;
-  width: 155px;
+  /* width: 155px; */
 }
 
 .search-input::placeholder {
@@ -109,4 +122,152 @@
 
 .register-icon {
   margin-left: 5px;
+}
+
+.resize-handle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 10px; /* Adjust as needed */
+  height: 100%;
+  cursor: ew-resize;
+  background-color: #ddd;
+}
+
+.search-result-container {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+.drag-card {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border: 2px solid #007bff;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+  color: #212529;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden; /* Hide overflow to prevent additional details from overflowing */
+  transition: height 0.3s ease; /* Smooth transition for height change */
+
+}
+
+.drag-card h3 {
+  color: #212529;
+}
+
+.drag-card:hover {
+  height: auto;
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.drag-card:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.search-result-button {
+  background-color: rgb(209, 209, 209);
+  border-radius: 20px;
+  padding: 10px;
+  border:#007bff;
+  margin-bottom: 10px;
+  transition: transform 0.3s ease;
+}
+
+.search-result-button h3 {
+  color: #212529;
+}
+
+.search-result-button:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.search-result-button:active {
+  transform: scale(0.9);
+  box-shadow: none;
+}
+
+.patient-details {
+  display: none;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.drag-card:hover .patient-details {
+  display: block; /* Show additional details when hovered */
+}
+
+.patient-search-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(209, 209, 209);
+  border-radius: 20px;
+  padding: 10px;
+  border:#007bff;
+  margin-bottom: 10px;
+  position: relative;
+  overflow: hidden; /* Hide overflow to prevent additional details from overflowing */
+  transition: height 0.3s ease; /* Smooth transition for height change */
+}
+
+.patient-search-button h3 {
+  color: #212529;
+}
+
+.patient-search-button:hover {
+  height: auto;
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.patient-search-button:active {
+  transform: scale(0.9);
+  box-shadow: none;
+}
+
+.patient-search-button:hover .patient-details {
+  display: block; /* Show additional details when hovered */
+  max-width:fit-content;
+}
+
+.patient-details img {
+  padding: 0%;
+  width: 150px;;
+  border: none; /* Remove border */
+  background-color: transparent;
+}
+
+
+.drag-card-content {
+  flex-grow: 1;
+}
+
+.clear-patient-icon {
+  margin-left: auto; /* This will push the cross icon to the right */
+}
+
+.loggedInDetails{
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  button{
+    border-radius: 10px;
+    scale: 1.2;
+    padding: 3px;
+  }
 }
