@@ -1,4 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
+
 import {
   FaUser,
   FaUserMd,
@@ -11,6 +13,7 @@ import PatientRegistrationDialog from "./PatientRegistrationForm";
 import "../styles/SidebarStyles.css";
 // eslint-disable-next-line react/prop-types
 const Sidebar = ({ setPatientData, handleDragStart, setDocCalendar }) => {
+  const navigate = useNavigate()
   const [showDialog, setShowDialog] = useState(false);
   const [patientDropdownVisible, setPatientDropdownVisible] = useState(false);
   const [doctorDropdownVisible, setDoctorDropdownVisible] = useState(false);
@@ -504,7 +507,7 @@ const Sidebar = ({ setPatientData, handleDragStart, setDocCalendar }) => {
       <div className="loggedInDetails">
         <h2>Logged in as Omar</h2>
         <h3>Employee Number: 4564</h3>
-        <button>sign out</button>
+        <button onClick={()=> navigate("/login")}>sign out</button>
       </div>
       {showDialog && (
         <PatientRegistrationDialog

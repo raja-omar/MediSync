@@ -56,7 +56,7 @@ export default function Login(props) {
           </div>
         </div>
         <div className="login-buttons">
-          <button className="login-button" onClick={() => {}}>
+          <button className="login-button" onClick={() => navigate("/")}>
             Login
           </button>
         </div>

@@ -64,7 +64,7 @@ export default function Register() {
                             </div>
                         )}
                         <div className="form-group">
-                            <button type="submit">Register</button>
+                            <button type="submit" onClick={()=>navigate("/")}>Register</button>
                         </div>
                         <p>Already registered? <a href="/login">Sign in now</a></p>
                     </form>
