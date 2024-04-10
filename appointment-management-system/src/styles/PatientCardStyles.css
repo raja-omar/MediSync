@@ -14,7 +14,7 @@
   font-size: 15px;
   color: #333333;
   font-weight: bold;
-  /* border-bottom: none; */
+  border-bottom: none;
 }
 
 .patient-card p {
