@@ -218,7 +218,6 @@ const Calendar = ({
           <button onClick={jumpToToday} className="nav-button">
             Jump to today
           </button>
-
           <button onClick={goToPreviousWeek} className="nav-button">
             Previous Week
           </button>

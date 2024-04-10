@@ -387,7 +387,7 @@ const Sidebar = ({ setPatientData, handleDragStart, setDocCalendar }) => {
                   onClick={() => handlePatientSelect(patient)}
                 >
                   <h3>{patient.name}</h3>
-                  <p>Health ID: {patient.department}</p>
+                  <p>Health ID: {patient.healthCardNumber}</p>
                   <div className="patient-details">
                     <p>Phone: {patient.phonenumber}</p>
                     <p>Address: {patient.address}</p>

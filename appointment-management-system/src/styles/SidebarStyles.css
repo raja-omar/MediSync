@@ -259,6 +259,9 @@
 
 .drag-card-content {
   flex-grow: 1;
+  p{
+    color: #000000;
+  }
 }
 
 .clear-patient-icon {
