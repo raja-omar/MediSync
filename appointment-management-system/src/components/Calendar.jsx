@@ -215,12 +215,13 @@ const Calendar = ({
             Currently seeing {docCalendar ? docCalendar.name : "No One"}&apos;s
             Calendar
           </div>
-          <button onClick={jumpToToday} className="nav-button">
-            Jump to today
-          </button>
           <button onClick={goToPreviousWeek} className="nav-button">
             Previous Week
           </button>
+          <button onClick={jumpToToday} className="nav-button">
+            Jump to this week
+          </button>
+
           <button onClick={goToNextWeek} className="nav-button">
             Next Week
           </button>

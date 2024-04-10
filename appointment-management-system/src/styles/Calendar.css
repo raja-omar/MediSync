@@ -8,10 +8,21 @@
   margin-bottom: 10px;
   display: flex;
   justify-content: space-between;
-  align-items: center; /* Align buttons vertically in the center */
-  background-color: #242424; /* Light and transparent background */
-  /* border-radius: 5px; */
+  align-items: center;
+  background-color: #242424;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.current_doc {
+  flex-grow: 1; /* Allows the current_doc div to take up remaining space */
+}
+
+.nav-buttons {
+  display: flex;
+}
+
+.nav-button {
+  margin-left: 10px; /* Adjust spacing between buttons if needed */
 }
 
 .nav-button {

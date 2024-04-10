@@ -238,3 +238,13 @@ input:checked + .slider:before {
     padding: 3px;
   }
 }
+
+.doc-sign-out {
+  background-color: #4cb448; /* green login button */
+  font-size: 15px;
+  color: #fff;
+  border: none;
+  padding-left: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
