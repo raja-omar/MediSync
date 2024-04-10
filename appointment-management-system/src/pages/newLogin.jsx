@@ -14,7 +14,7 @@ export default function Login(props) {
   return (
     <div className="login-container">
       <button className="back-button" onClick={() => navigate("/")}>
-        MediSync
+        Back
       </button>
       <div className="login-form">
         <div className="login-header">
