@@ -14,7 +14,7 @@ export default function Login(props) {
   return (
     <div className="login-container">
       <button className="back-button" onClick={() => navigate("/")}>
-        MediSync
+        Back
       </button>
       <div className="login-form">
         <div className="login-header">
@@ -26,6 +26,7 @@ export default function Login(props) {
             <h3>Email</h3>
             <input
               className="login-input"
+              id="fix-login-input"
               type="text"
               onChange={(event) => setEmail(event.target.value)}
             />
@@ -38,6 +39,7 @@ export default function Login(props) {
             <div className="password-input">
               <input
                 className="login-input"
+                id="fix-login-input"
                 type={showPassword ? "text" : "password"}
                 onChange={(event) => {}}
               />
@@ -63,7 +65,7 @@ export default function Login(props) {
             if (email.includes("doctor")){
               navigate("/doctorscreen")
             } else{
-              navigate("/")
+              navigate("/home")
             }
           }}>
             Login

@@ -115,3 +115,7 @@ body {
   cursor: pointer;
   color: #007bff; /* blue back button text */
 }
+
+#fix-login-input {
+  width: 92%;
+}

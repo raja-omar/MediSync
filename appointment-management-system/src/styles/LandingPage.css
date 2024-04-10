@@ -1,0 +1,209 @@
+/* LandingPage.css */
+
+.landing-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  /* Updated LandingPage.css */
+
+header {
+    background: linear-gradient(to right, #4e54c8, #8f94fb);
+    color: #fff;
+    padding: 20px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow */
+  }
+  
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .logo h1 {
+    font-size: 2.5rem;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Add text shadow */
+  }
+  
+  nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav ul li {
+    display: inline-block;
+    margin-left: 20px;
+  }
+  
+  nav ul li:first-child {
+    margin-left: 0;
+  }
+  
+  /* Updated LandingPage.css */
+
+nav ul li button.sign-in {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    background-color: #27ae60; /* Blue color for sign-in button */
+    border: 1px solid #27ae60;
+  }
+  
+  nav ul li button.sign-in:hover {
+    background-color: #1e88e5; /* Darker blue color on hover */
+  }
+  
+  nav ul li button.sign-up {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    background-color: #27ae60; /* Green color for sign-up button */
+    border: 1px solid #27ae60;
+  }
+  
+  nav ul li button.sign-up:hover {
+    background-color: #219653; /* Darker green color on hover */
+  }
+  
+  
+
+  
+  .about {
+    background-color: #f9f9f9;
+    padding: 60px 0;
+    text-align: center;
+    opacity: 0; /* Initially hide the section */
+    animation: fadeIn 0.5s ease forwards; /* Apply fadeIn animation */
+  }
+  
+  .about-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .about h2 {
+    color: #333;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .about p {
+    color: #555;
+    font-size: 1.2rem;
+    line-height: 1.6;
+  }
+  
+  /* Additional styling for more visual appeal */
+  .about {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('path/to/background-image.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .features {
+    background-color: #f9f9f9;
+    padding: 80px 0;
+    opacity: 0; /* Initially hide the section */
+    animation: fadeIn 0.5s ease 0.5s forwards; /* Apply fadeIn animation with delay */
+  }
+  
+  .features h2 {
+    color: #000;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .feature-cards {
+    display: flex;
+    /* flex-wrap: wrap; */
+    justify-content: space-between;
+  }
+  
+  /* Updated LandingPage.css */
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .feature-card {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: calc(30% - 20px);
+    margin-bottom: 40px;
+    margin-right: 20px;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    opacity: 0; /* Initially hide the cards */
+  }
+  
+  .feature-card:last-child {
+    margin-right: 0;
+  }
+  
+  /* Apply animation to each card with a delay */
+  .feature-card:nth-child(1) {
+    animation: fadeIn 0.5s ease 0.5s forwards; /* Delay the animation of the first card */
+  }
+  
+  .feature-card:nth-child(2) {
+    animation: fadeIn 0.5s ease 1s forwards; /* Delay the animation of the second card */
+  }
+  
+  .feature-card:nth-child(3) {
+    animation: fadeIn 0.5s ease 1.5s forwards; /* Delay the animation of the third card */
+  }
+  
+  .feature-card:hover {
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
+  }
+  
+  
+  
+  .feature-card h3 {
+    color: #000;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
+  
+  .feature-card p {
+    font-size: 1.1rem;
+  }
+  
+  footer {
+    background-color: #000;
+    color: #fff;
+    padding: 20px 0;
+    margin-top: auto;
+    text-align: center;
+  }
+  
+  footer p {
+    font-size: 1rem;
+  }
+  

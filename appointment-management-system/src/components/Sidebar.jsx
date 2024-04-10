@@ -507,7 +507,7 @@ const Sidebar = ({ setPatientData, handleDragStart, setDocCalendar }) => {
       <div className="loggedInDetails">
         <h2>Logged in as Omar</h2>
         <h3>Employee Number: 4564</h3>
-        <button onClick={()=> navigate("/login")}>sign out</button>
+        <button onClick={()=> navigate("/")}>sign out</button>
       </div>
       {showDialog && (
         <PatientRegistrationDialog
