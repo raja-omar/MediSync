@@ -215,7 +215,6 @@ const Calendar = ({
             Currently seeing {docCalendar ? docCalendar.name : "No One"}&apos;s
             Calendar
           </div>
-          
           <button onClick={goToPreviousWeek} className="nav-button">
             Previous Week
           </button>
