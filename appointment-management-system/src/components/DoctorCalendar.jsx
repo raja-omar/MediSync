@@ -187,13 +187,12 @@ const Calendar = () => {
   return (
     <>
       <div className="calendar">
-        <div className="calendar-header">
-          <button onClick={jumpToToday} className="nav-button">
-            Jump to today
-          </button>
-
+        <div className="calendar-header" style={{display:'flex', justifyContent:'flex-end'}}>
           <button onClick={goToPreviousWeek} className="nav-button">
             Previous Week
+          </button>
+          <button onClick={jumpToToday} className="nav-button">
+            Jump to this week
           </button>
           <button onClick={goToNextWeek} className="nav-button">
             Next Week

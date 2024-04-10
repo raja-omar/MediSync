@@ -250,7 +250,8 @@ const Sidebar = ({ isFullScreen, setIsFullScreen }) => {
       <div className="loggedInDetails">
         <h2>Logged in as Dr.Saadman</h2>
         <h3>Employee Number: 1234</h3>
-        <button onClick={() => navigate("/login")}>sign out</button>
+        <button style={{backgroundColor:"red",  padding: "4px 8px", borderRadius:"5px", marginTop: "5px"
+}} onClick={() => navigate("/login")}>Sign out</button>
       </div>
     </div>
   );
