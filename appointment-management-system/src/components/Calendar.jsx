@@ -3,6 +3,7 @@ import "../styles/Calendar.css";
 import ErrorModal from "./ErrorModal";
 import Sidebar from "./Sidebar";
 import "../styles/PatientCardStyles.css";
+import { startOfWeek as dateFnsStartOfWeek, endOfWeek as dateFnsEndOfWeek, isWithinInterval } from 'date-fns';
 
 let draggedPatient;
 let draggedCellId;
@@ -17,6 +18,10 @@ const Calendar = ({
 }) => {
   const [currentWeekStart, setCurrentWeekStart] = useState(new Date());
   // const [blockTimeMode, setBlockTimeMode] = useState(false);
+  const [allWeeksData, setAllWeeksData] = useState({});
+  const [allData, setAllData] = useState([]);
+  const weekData = allData.filter(appointment => isSameWeek(appointment.date, currentWeekStart));
+  const defaultCellsData = {};
   const [cellsData, setCellsData] = useState({});
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
@@ -83,12 +88,26 @@ const Calendar = ({
     return previousWeekStart;
   };
 
+
   const goToNextWeek = () => {
-    setCurrentWeekStart(getNextWeekStart());
+    const nextWeekStart = getNextWeekStart();
+    setAllWeeksData({
+      ...allWeeksData,
+      [currentWeekStart.toISOString()]: cellsData,
+    });
+    setCurrentWeekStart(nextWeekStart);
+    setCellsData(allWeeksData[nextWeekStart.toISOString()] || defaultCellsData);
   };
 
+  
   const goToPreviousWeek = () => {
-    setCurrentWeekStart(getPreviousWeekStart());
+    const previousWeekStart = getPreviousWeekStart();
+    setAllWeeksData({
+      ...allWeeksData,
+      [currentWeekStart.toISOString()]: cellsData,
+    });
+    setCurrentWeekStart(previousWeekStart);
+    setCellsData(allWeeksData[previousWeekStart.toISOString()] || defaultCellsData);
   };
 
   const renderTimeColumn = () => {
@@ -178,7 +197,7 @@ const Calendar = ({
     }
     return cells;
   };
-
+  
   const jumpToToday = () => {
     setCurrentWeekStart(new Date());
   };
