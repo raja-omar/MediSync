@@ -4,4 +4,5 @@
 .app-container {
   height: 100vh;
   display: flex;
+  background-color: rgb(245, 245, 245);
 }

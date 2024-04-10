@@ -9,13 +9,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center; /* Align buttons vertically in the center */
-  background-color: rgba(255, 255, 255, 0.8); /* Light and transparent background */
-  border-radius: 5px;
+  background-color: #242424; /* Light and transparent background */
+  /* border-radius: 5px; */
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .nav-button {
-  background-color: #0056b3; /* Darker colored buttons */
+  background-color: rgb(21, 146, 21); /* Darker colored buttons */
   color: white;
   border: none;
   padding: 8px 12px;
@@ -33,7 +33,7 @@
 }
 
 .nav-button:hover {
-  background-color: #004080; /* Darker background color on hover */
+  background-color: rgb(15, 104, 15); /* Darker background color on hover */
   transform: scale(1.05);
 }
 
@@ -43,7 +43,7 @@
 
 .calendar-body {
   display: flex;
-}
+ }
 
 .calendar-day {
   flex: 1;
@@ -184,4 +184,8 @@ body.modal-open .calendar {
   pointer-events: none; /* Disable pointer events */
 }
 
+.current_doc{
+  color: #ffffff;
+  font-weight: 900;
+}
 
