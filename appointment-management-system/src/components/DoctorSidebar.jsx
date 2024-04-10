@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../styles/DoctorSidebarStyles.css";
 import {
   FaUser,
@@ -9,6 +10,7 @@ import {
 } from "react-icons/fa";
 
 const Sidebar = ({ isFullScreen, setIsFullScreen }) => {
+  const navigate = useNavigate()
   const [notes, setNotes] = useState("");
   const [isResizing, setIsResizing] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -16,6 +18,18 @@ const Sidebar = ({ isFullScreen, setIsFullScreen }) => {
   const [fontSize, setFontSize] = useState(16);
   const [patientDropdownVisible, setPatientDropdownVisible] = useState(false);
   const [lastWidth, setLastWidth] = useState(450);
+  const [randomNotes, setRandomNotes] = useState([
+    {
+      text: "Patient needs to schedule a follow-up appointment in 2 weeks.",
+      date: "2024-03-07",
+      time: "10:30 AM",
+    },
+    {
+      text: "Prescribed medication: Aspirin 75mg daily.",
+      date: "2024-03-06",
+      time: "02:15 PM",
+    },
+  ]);
 
   const patientDetails = {
     name: "John Doe",
@@ -29,19 +43,6 @@ const Sidebar = ({ isFullScreen, setIsFullScreen }) => {
     reasonForAppointment: "Routine check-up",
   };
 
-  const randomNotes = [
-    {
-      text: "Patient needs to schedule a follow-up appointment in 2 weeks.",
-      date: "2024-03-07",
-      time: "10:30 AM",
-    },
-    {
-      text: "Prescribed medication: Aspirin 75mg daily.",
-      date: "2024-03-06",
-      time: "02:15 PM",
-    },
-  ];
-
   const togglePatientDropdown = () => {
     setPatientDropdownVisible(!patientDropdownVisible);
   };
@@ -51,10 +52,11 @@ const Sidebar = ({ isFullScreen, setIsFullScreen }) => {
   };
 
   const decreaseFontSize = () => {
-    setFontSize((prevFontSize) => Math.max(prevFontSize - 1, 10)); // Limit minimum font size
+    setFontSize((prevFontSize) => Math.max(prevFontSize - 1, 10));
   };
+
   const resetFontSize = () => {
-    setFontSize(16); // Limit minimum font size
+    setFontSize(16);
   };
 
   const handleNotesChange = (e) => {
@@ -62,7 +64,12 @@ const Sidebar = ({ isFullScreen, setIsFullScreen }) => {
   };
 
   const submitNotes = () => {
-    console.log("Notes submitted:", notes);
+    const newNote = {
+      text: notes,
+      date: new Date().toLocaleDateString(),
+      time: new Date().toLocaleTimeString(),
+    };
+    setRandomNotes((prevNotes) => [...prevNotes, newNote]);
     setNotes("");
   };
 
@@ -72,10 +79,10 @@ const Sidebar = ({ isFullScreen, setIsFullScreen }) => {
       setSidebarWidth(window.innerWidth);
       console.log("it should be full screen");
     } else {
-      setSidebarWidth(lastWidth); // Reset the width to the value stored in lastWidth
+      setSidebarWidth(lastWidth);
       console.log("should not be full screen");
     }
-    setIsFullScreen(!isFullScreen); // Toggle the isFullScreen state
+    setIsFullScreen(!isFullScreen);
   };
 
   const handleMouseDown = (e) => {
@@ -87,7 +94,7 @@ const Sidebar = ({ isFullScreen, setIsFullScreen }) => {
   const handleMouseMove = (e) => {
     if (isResizing) {
       const deltaX = e.clientX - startX;
-      const newWidth = Math.max(sidebarWidth + deltaX, 500); // Limit minimum width
+      const newWidth = Math.max(sidebarWidth + deltaX, 500);
       setSidebarWidth(newWidth);
       setLastWidth(sidebarWidth);
       setStartX(e.clientX);
@@ -97,6 +104,12 @@ const Sidebar = ({ isFullScreen, setIsFullScreen }) => {
   const handleMouseUp = () => {
     setIsResizing(false);
     document.body.style.userSelect = "auto";
+  };
+
+  const deleteNote = (index) => {
+    const updatedNotes = [...randomNotes];
+    updatedNotes.splice(index, 1);
+    setRandomNotes(updatedNotes);
   };
 
   return (
@@ -222,7 +235,10 @@ const Sidebar = ({ isFullScreen, setIsFullScreen }) => {
                       Date: {note.date}, Time: {note.time}
                     </p>
                   </li>
-                  <button className="delete-button">
+                  <button
+                    className="delete-button"
+                    onClick={() => deleteNote(index)}
+                  >
                     <FaTrash /> Delete
                   </button>
                 </div>
@@ -234,7 +250,7 @@ const Sidebar = ({ isFullScreen, setIsFullScreen }) => {
       <div className="loggedInDetails">
         <h2>Logged in as Dr.Saadman</h2>
         <h3>Employee Number: 1234</h3>
-        <button>sign out</button>
+        <button onClick={() => navigate("/login")}>sign out</button>
       </div>
     </div>
   );

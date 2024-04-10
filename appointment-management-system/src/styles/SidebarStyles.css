@@ -214,7 +214,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgb(209, 209, 209);
+  background-color: rgb(255, 255, 255);
   border-radius: 20px;
   padding: 10px;
   border:#007bff;
@@ -222,6 +222,9 @@
   position: relative;
   overflow: hidden; /* Hide overflow to prevent additional details from overflowing */
   transition: height 0.3s ease; /* Smooth transition for height change */
+  p{
+    color: #000000;
+  }
 }
 
 .patient-search-button h3 {
@@ -236,11 +239,13 @@
 
 .patient-search-button:active {
   transform: scale(0.9);
+  transition: ease-in, 0.3s ease;
   box-shadow: none;
 }
 
 .patient-search-button:hover .patient-details {
   display: block; /* Show additional details when hovered */
+  transition: ease-in, 0.3s ease;
   max-width:fit-content;
 }
 
