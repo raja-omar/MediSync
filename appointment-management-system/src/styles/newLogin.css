@@ -36,6 +36,9 @@ body {
 .login-inputs {
   margin-bottom: 20px;
   font-size: 11px;
+  display: flex;
+  flex-direction: column;
+  width: 92%;
 }
 
 .login-input label {
@@ -109,11 +112,11 @@ body {
   position: absolute;
   top: 20px;
   left: 20px;
-  background: none;
+  background-color: #4cb448;
   border: none;
   font-size: 16px;
   cursor: pointer;
-  color: #007bff; /* blue back button text */
+  color: #ffffff; /* blue back button text */
 }
 
 #fix-login-input {

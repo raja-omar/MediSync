@@ -3,7 +3,7 @@ import "../styles/Calendar.css";
 import ErrorModal from "./ErrorModal";
 import Sidebar from "./Sidebar";
 import "../styles/PatientCardStyles.css";
-// import { startOfWeek as dateFnsStartOfWeek, endOfWeek as dateFnsEndOfWeek, isWithinInterval } from 'date-fns';
+import { startOfWeek as dateFnsStartOfWeek, endOfWeek as dateFnsEndOfWeek, isWithinInterval } from 'date-fns';
 
 let draggedPatient;
 let draggedCellId;
