@@ -116,13 +116,10 @@ body {
   border: none;
   font-size: 16px;
   cursor: pointer;
-  color: #000000; /* blue back button text */
+  color: #ffffff; /* blue back button text */
 }
 
 .back-button:hover {
   background-color: rgb(0, 172, 0);
 }
 
-.back-button:active {
-  background-color: rgb(0, 221, 0);
-}
