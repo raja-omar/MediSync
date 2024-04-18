@@ -13,7 +13,7 @@ import PatientRegistrationDialog from "./PatientRegistrationForm";
 import "../styles/SidebarStyles.css";
 // eslint-disable-next-line react/prop-types
 const Sidebar = ({ setPatientData, handleDragStart, setDocCalendar }) => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [showDialog, setShowDialog] = useState(false);
   const [patientDropdownVisible, setPatientDropdownVisible] = useState(false);
   const [doctorDropdownVisible, setDoctorDropdownVisible] = useState(false);
@@ -494,7 +494,7 @@ const Sidebar = ({ setPatientData, handleDragStart, setDocCalendar }) => {
                   onClick={() => changeDoc(doc)}
                 >
                   <h3>{doc.name}</h3>
-                  <p>Health ID: {doc.department}</p>
+                  <p>Department: {doc.department}</p>
                   <div className="patient-details">
                     <img src={docMinis[doc.name]} alt={doc.name} />
                   </div>
@@ -507,7 +507,20 @@ const Sidebar = ({ setPatientData, handleDragStart, setDocCalendar }) => {
       <div className="loggedInDetails">
         <h2>Logged in as Omar</h2>
         <h3>Employee Number: 4564</h3>
-        <button style={{borderRadius:'5px', backgroundColor: 'red', paddingLeft:'8px', paddingRight:'8px', paddingTop: '4px', paddingBottom:'4px', marginTop:'10px'}} onClick={()=> navigate("/")}>Sign out</button>
+        <button
+          style={{
+            borderRadius: "5px",
+            backgroundColor: "red",
+            paddingLeft: "8px",
+            paddingRight: "8px",
+            paddingTop: "4px",
+            paddingBottom: "4px",
+            marginTop: "10px",
+          }}
+          onClick={() => navigate("/")}
+        >
+          Sign out
+        </button>
       </div>
       {showDialog && (
         <PatientRegistrationDialog
