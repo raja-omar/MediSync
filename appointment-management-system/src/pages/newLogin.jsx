@@ -1,19 +1,19 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import "../styles/newLogin.css";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import '../styles/newLogin.css';
 
 export default function Login(props) {
   const [showPassword, setShowPassword] = useState(false);
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const docUser = "doctorSmit@email.com";
-  const recepUser = "recepSaadman@email.com"
+  const [email, setEmail] = useState('');
+  const docUser = 'doctorSmit@email.com';
+  const recepUser = 'recepSaadman@email.com';
 
   return (
     <div className="login-container">
-      <button className="back-button" onClick={() => navigate("/")}>
+      <button className="back-button" onClick={() => navigate('/')}>
         Back
       </button>
       <div className="login-form">
@@ -40,7 +40,7 @@ export default function Login(props) {
               <input
                 className="login-input"
                 id="fix-login-input"
-                type={showPassword ? "text" : "password"}
+                type={showPassword ? 'text' : 'password'}
                 onChange={(event) => {}}
               />
               <button
@@ -61,21 +61,28 @@ export default function Login(props) {
           </div>
         </div>
         <div className="login-buttons">
-          <button className="login-button" onClick={() => {
-            if (email.includes("doctor")){
-              navigate("/doctorscreen")
-            } else{
-              navigate("/home")
-            }
-          }}>
+          <button
+            className="login-button"
+            onClick={() => {
+              if (email.includes('doctor')) {
+                navigate('/doctorscreen');
+              } else {
+                navigate('/home');
+              }
+            }}
+          >
             Login
           </button>
         </div>
         <div className="signup-link">
           <h3>New to MediSync?</h3>
-          <a href="/register" className="signup-button">
+          <button
+            onClick={() => navigate('/register')}
+            className="signup-button"
+            style={{ background: 'none', fontSize: '14px' }}
+          >
             Sign up
-          </a>
+          </button>
         </div>
       </div>
     </div>
