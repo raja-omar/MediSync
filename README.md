@@ -1,6 +1,6 @@
 # MediSync
 
-Designed to aid frontline medical staff at a clinic better manage patient requests.
+Designed to aid frontline medical staff at a clinic better manage patient requests
 
 
 ## How to run the program:
